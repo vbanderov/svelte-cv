@@ -6,7 +6,10 @@ module.exports = {
 	ignorePatterns: ['*.cjs'],
 	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
 	settings: {
-		'svelte3/typescript': () => require('typescript')
+		'svelte3/typescript': () => require('typescript'),
+		tailwindcss: {
+			callees: ['classes']
+		}
 	},
 	parserOptions: {
 		sourceType: 'module',
