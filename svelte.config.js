@@ -18,7 +18,7 @@ const config = {
 		}),
 		appDir: 'app',
 		paths: {
-			base: dev ? '' : '/svelte-sv'
+			base: dev ? '' : '/svelte-cv'
 		}
 	}
 };
