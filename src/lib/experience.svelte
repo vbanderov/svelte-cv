@@ -1,22 +1,37 @@
-<div>
-	<div class="mt-4 mb-2 text-xl dark:text-white">Experience</div>
+<script>
+	import experience from './experience';
+</script>
 
-	<div class="ml-2 border-l-2 border-cyan-400 pl-2">
-		<div class="mb-2">
-			<div class="text-lg dark:text-white">Senior Full Stack Engineer at Skillz</div>
-			<span class="absolute inline-block h-3 w-3 -translate-x-[15px] rounded-full bg-blue-700" />
-			<div>March 2021 - now</div>
-			<div>Building the future</div>
-		</div>
+<div class="dark:text-white">
+	<div class="text-bold mt-4 mb-2 text-2xl font-bold">Experience</div>
 
-		<div class="mb-2">
-			<div class="text-lg dark:text-white">Lead Web Developer at Eviviz</div>
-			<span class="absolute inline-block h-3 w-3 -translate-x-[15px] rounded-full bg-blue-700" />
-			<div>April 2017 - Feb 2021</div>
+	<div class="ml-2 space-y-2  border-l-2 border-gray-300 pl-2">
+		{#each experience as job}
 			<div>
-				Design and Development of Progressive Web Apps for HEOR data capture, visualization and
-				analysis with MEAN stack
+				<div class="text-lg font-bold">{job.employer.title}</div>
+				<div class=" space-y-2">
+					{#each job.positions as position}
+						<div class="ml-2">
+							<div class="flex flex-row items-center">
+								<span
+									class="absolute inline-block h-4 w-4 -translate-x-[25px] rounded-full border-4 border-white bg-gray-500 dark:border-slate-700"
+								/>
+								<div class="text-lg font-bold">{position.title}</div>
+							</div>
+							<div class="font-bold">{position.startDate} - {position.endDate}</div>
+							<div class="ml-2 space-y-2">
+								<ul class="list-inside list-['🚀']">
+									{#each position.bulletPoints as point}
+										<li><span class="pl-1">{point}</span></li>
+									{/each}
+								</ul>
+
+								<div><span class="font-bold">Skills:</span> {position.technologies.join(', ')}</div>
+							</div>
+						</div>
+					{/each}
+				</div>
 			</div>
-		</div>
+		{/each}
 	</div>
 </div>

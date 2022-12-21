@@ -3,9 +3,18 @@
 	import Header from '$lib/header.svelte';
 </script>
 
-<main class="flex h-screen flex-col items-center bg-gray-200 p-2 dark:bg-slate-900 print:p-0">
+<svelte:head>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+		rel="stylesheet"
+	/>
+</svelte:head>
+
+<main class="flex min-h-screen flex-col items-center bg-gray-200 dark:bg-slate-900 lg:p-2">
 	<div
-		class="max-w-7xl bg-white p-4 shadow-lg shadow-black/10 dark:bg-slate-700 dark:shadow-white/20"
+		class="h-full w-full max-w-5xl flex-1 bg-white p-4 shadow-lg shadow-black/10 dark:bg-slate-700 dark:shadow-white/20 lg:flex-grow-0 print:flex-1"
 	>
 		<Header />
 
