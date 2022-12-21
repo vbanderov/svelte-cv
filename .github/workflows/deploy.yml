@@ -3,7 +3,7 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ['main']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -16,7 +16,7 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
@@ -37,6 +37,12 @@ jobs:
           node-version: '18.x'
       - run: npm ci
       - run: npm run build
+      - name: Generate PDF version
+        uses: fifsky/html-to-pdf-action@master
+        with:
+          htmlFile: ./build/index.html
+          outputFile: ./build/CV-Banderov.pdf
+          pdfOptions: '{"format": "Letter", "margin": {"top": "10mm", "left": "10mm", "right": "10mm", "bottom": "10mm"}}'
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
