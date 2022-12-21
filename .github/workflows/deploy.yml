@@ -42,7 +42,7 @@ jobs:
         with:
           htmlFile: ./build/index.html
           outputFile: ./build/CV-Banderov.pdf
-          pdfOptions: '{"format": "Letter", "margin": {"top": "10mm", "left": "10mm", "right": "10mm", "bottom": "10mm"}}'
+          pdfOptions: '{"format": "Letter", "margin": {"top": "10mm", "left": "10mm", "right": "10mm", "bottom": "10mm"}, "printBackground": true}'
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
