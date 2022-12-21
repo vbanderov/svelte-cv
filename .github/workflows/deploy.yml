@@ -41,8 +41,10 @@ jobs:
         uses: LukaszLapaj/html-to-pdf-action@2.0.0
         with:
           htmlFile: ./build/index.html
-          outputFile: ./build/CV-Banderov.pdf
+          outputFile: ./CV-Banderov.pdf
           pdfOptions: '{"format": "Letter", "margin": {"top": "10mm", "left": "10mm", "right": "10mm", "bottom": "10mm"}, "printBackground": true}'
+      - run: BASE_URI=/svelte-cv npm run build
+      - run: cp ./CV-Banderov.pdf ./build/CV-Banderov.pdf
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

@@ -1,7 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
-const dev = process.argv.includes('dev');
+const base = process.env['BASE_URI'] ?? '';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -18,7 +18,7 @@ const config = {
 		}),
 		appDir: 'app',
 		paths: {
-			base: dev ? '' : '/svelte-cv'
+			base
 		}
 	}
 };
