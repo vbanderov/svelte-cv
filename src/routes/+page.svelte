@@ -21,7 +21,7 @@
 		<Experience />
 	</div>
 
-	<a href="/svelte-cv/CV-Banderov.pdf" target="blank">
+	<a data-sveltekit-reload href="/svelte-cv/CV-Banderov.pdf" target="blank">
 		<div
 			class="fixed bottom-3 right-14 rounded-md bg-slate-700 p-2 text-blue-500 hover:bg-sky-700 dark:bg-white print:hidden"
 		>
