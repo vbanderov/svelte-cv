@@ -38,7 +38,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Generate PDF version
-        uses: fifsky/html-to-pdf-action@master
+        uses: LukaszLapaj/html-to-pdf-action@2.0.0
         with:
           htmlFile: ./build/index.html
           outputFile: ./build/CV-Banderov.pdf
