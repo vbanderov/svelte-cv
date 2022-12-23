@@ -46,7 +46,7 @@ jobs:
       - run: BASE_URI=/svelte-cv npm run build
         env:
           VITE_ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
-      - run: cp ./CV-Banderov.pdf ./build/${{ENCRYPTION_PASSWORD}}.pdf
+      - run: cp ./CV-Banderov.pdf ./build/$VITE_ENCRYPTION_PASSWORD.pdf
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
