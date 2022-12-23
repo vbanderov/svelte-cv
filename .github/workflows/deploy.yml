@@ -36,17 +36,20 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm ci
-      - run: npm run build
+      - name: Build for PDF
+        run: npm run build
+        env:
+          VITE_ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
       - name: Generate PDF version
         uses: LukaszLapaj/html-to-pdf-action@2.0.0
         with:
           htmlFile: ./build/index.html
           outputFile: ./CV-Banderov.pdf
           pdfOptions: '{"format": "Letter", "margin": {"top": "10mm", "left": "10mm", "right": "10mm", "bottom": "10mm"}, "printBackground": true}'
-      - run: BASE_URI=/svelte-cv npm run build
-        env:
-          VITE_ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
-      - run: cp ./CV-Banderov.pdf ./build/$VITE_ENCRYPTION_PASSWORD.pdf
+      - name: Build for GitHub Pages
+        run: BASE_URI=/svelte-cv npm run build
+      - name: Add PDF to build folder
+        run: cp ./CV-Banderov.pdf ./build/$VITE_ENCRYPTION_PASSWORD.pdf
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
