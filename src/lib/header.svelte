@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import avatar from '$lib/assets/avatar.jpeg';
 	import AES from 'crypto-js/aes';
 	import {
@@ -14,17 +14,20 @@
 	import { onMount } from 'svelte';
 	let phoneDecrypted = '';
 	let emailDecrypted = '';
+	let password: string | undefined;
+
+	password = import.meta.env['VITE_ENCRYPTION_PASSWORD'];
 
 	onMount(() => {
-		const s = window.location.hash.slice(1);
+		password = password ?? window.location.hash.slice(1);
 		const config = {
 			padding: CryptoJS.pad.Pkcs7,
 			mode: CryptoJS.mode.CBC,
 			iv: CryptoJS.enc.Hex.parse(iv)
 		};
-		const key = CryptoJS.PBKDF2(s, CryptoJS.enc.Hex.parse(salt), { keySize: 256 / 32 });
+		const key = CryptoJS.PBKDF2(password, CryptoJS.enc.Hex.parse(salt), { keySize: 256 / 32 });
 
-		if (!s || AES.decrypt(testStringEncrypted, key, config).toString(Utf8) !== testString) {
+		if (!password || AES.decrypt(testStringEncrypted, key, config).toString(Utf8) !== testString) {
 			return;
 		}
 

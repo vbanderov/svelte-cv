@@ -44,7 +44,9 @@ jobs:
           outputFile: ./CV-Banderov.pdf
           pdfOptions: '{"format": "Letter", "margin": {"top": "10mm", "left": "10mm", "right": "10mm", "bottom": "10mm"}, "printBackground": true}'
       - run: BASE_URI=/svelte-cv npm run build
-      - run: cp ./CV-Banderov.pdf ./build/CV-Banderov.pdf
+        env:
+          VITE_ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
+      - run: cp ./CV-Banderov.pdf ./build/${{ENCRYPTION_PASSWORD}}.pdf
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
@@ -53,3 +55,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+      - uses: geekyeggo/delete-artifact@v2
+        with:
+          name: github-pages
