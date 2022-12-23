@@ -10,8 +10,6 @@
 	let showDownloadButton = false;
 	let filename = '';
 	onMount(() => {
-		showDownloadButton = true;
-
 		const s = window.location.hash.slice(1);
 		const config = {
 			padding: CryptoJS.pad.Pkcs7,
@@ -24,6 +22,7 @@
 			return;
 		}
 
+		showDownloadButton = true;
 		filename = `/svelte-cv/${s}.pdf`;
 	});
 </script>
