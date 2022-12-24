@@ -1,22 +1,10 @@
-# create-svelte
+# Resume built with Svelte Kit
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+This is my personal resume website built with Svelte Kit.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've installed dependencies with `npm install`, start a development server:
 
 ```bash
 npm run dev
@@ -24,6 +12,12 @@ npm run dev
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
+
+## Encryption
+
+Since I did not want anyone to be able to see my email and phone number they are encrypted. If open the site without a password you won't see them, nor will you be able to download the PDF version. The password can be passed through hash URL, e.g. `https://vbanderov.github.io/svelte-cv/#password`. This way I can securely share it.
+
+In order to update them you can run `npm run encrypt`. The password you enter also needs to be saved to `ENCRYPTION_PASSWORD` GitHub secret.
 
 ## Building
 
