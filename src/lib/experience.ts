@@ -49,7 +49,10 @@ const experience: Job[] = [
 				startDate: 'April 2017',
 				endDate: 'February 2021',
 				bulletPoints: [
-					'Design and Development of Progressive Web Apps for HEOR data capture, visualization and analysis with MEAN stack'
+					'Design and Development of Progressive Web Apps for HEOR data capture, visualization and analysis with MEAN stack',
+					'Supervise and mentor team of 3 developers',
+					'Continuous Integration and Deployment configuration in GitLab',
+					'Cloud and on-premise Web servers setup, domain routing and backups'
 				],
 				technologies: [
 					'TypeScript',
@@ -61,8 +64,20 @@ const experience: Job[] = [
 					'Kubernetes',
 					'Serverless',
 					'GraphQL',
-					'AWS ( Lambda, CloudFront, DynamoDB)'
+					'AWS (Lambda, CloudFront, DynamoDB)'
 				]
+			},
+			{
+				title: 'Infrastructure Manager',
+				startDate: 'Oct 2014',
+				endDate: 'Apr 2017',
+				bulletPoints: [
+					'Design, Configuration and management of on-premise and AWS infrastructure, including networking, servers and storage solutions',
+					'Development of various data aggregation solutions, leveraging REST API, SQL, Python, PowerShell and Bash scripts',
+					'Web administration: Web servers, registrars, DNS',
+					'Configuration of monitoring solutions using Spiceworks, CloudWatch and custom solutions'
+				],
+				technologies: ['AWS', 'NGINX', 'SQL', 'REST API']
 			}
 		]
 	}
