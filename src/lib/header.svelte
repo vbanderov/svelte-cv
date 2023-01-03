@@ -14,6 +14,7 @@
 	import { onMount } from 'svelte';
 	import PhoneIcon from '$lib/assets/device-mobile.svg';
 	import MailIcon from '$lib/assets/mail.svg';
+	import LocationIcon from '$lib/assets/location.svg';
 
 	let phoneDecrypted = '';
 	let emailDecrypted = '';
@@ -39,35 +40,46 @@
 	});
 </script>
 
-<div class="flex w-full flex-row items-center space-x-4 dark:text-white">
+<div
+	class="flex w-full flex-col items-center justify-center space-x-4 space-y-4 dark:text-white md:flex-row"
+>
 	<div class="w-32">
 		<img src={avatar} class="rounded-full" alt="avatar" />
 	</div>
-	<div class="flex-1 flex-col items-stretch">
-		<div class="text-2xl ">Vladimir Banderov</div>
-		<div class="text-lg ">
-			Senior Full Stack Engineer with impressive infrastructure experience and proven leadership
-			skills.
+	<div
+		class="flex-1 flex-col items-stretch text-center text-blue-700 dark:text-orange-300 md:text-left"
+	>
+		<div class="whitespace-nowrap text-3xl font-semibold tracking-wider">Vladimir Banderov</div>
+		<div class="text-base">
+			Senior Full Stack Engineer with extensive TypeScript experience and proven leadership skills.
 		</div>
+	</div>
 
-		<div class="mt-4 flex flex-row items-center justify-start space-x-4 text-base font-bold">
-			{#if emailDecrypted}
-				<div class="flex flex-row space-x-2">
-					<img src={MailIcon} alt="Email icon" />
-					<div>
-						<a href="mailto:{emailDecrypted}">{emailDecrypted}</a>
-					</div>
-				</div>
-			{/if}
+	<div
+		class="flex flex-row flex-wrap justify-evenly space-x-2 text-sm md:flex-col md:justify-start md:space-x-0 md:space-y-2"
+	>
+		{#if emailDecrypted}
+			<div class="flex flex-row items-center space-x-1">
+				<img src={MailIcon} alt="Email icon" class="max-w-4 max-h-4 rounded-full dark:hidden" />
 
-			{#if phoneDecrypted}
-				<div class="flex flex-row space-x-1">
-					<img src={PhoneIcon} alt="Phone icon" />
-					<div>
-						<a href="tel:{phoneDecrypted}">{phoneDecrypted}</a>
-					</div>
+				<div>
+					<a href="mailto:{emailDecrypted}">{emailDecrypted}</a>
 				</div>
-			{/if}
+			</div>
+		{/if}
+
+		{#if phoneDecrypted}
+			<div class="flex flex-row items-center space-x-1">
+				<img src={PhoneIcon} alt="Phone icon" class="max-w-4 max-h-4  dark:hidden" />
+				<div>
+					<a href="tel:{phoneDecrypted}">{phoneDecrypted}</a>
+				</div>
+			</div>
+		{/if}
+
+		<div class="flex flex-row items-center space-x-1">
+			<img src={LocationIcon} alt="Location icon" class="max-w-4 max-h-4  dark:hidden" />
+			<div>Calgary, AB</div>
 		</div>
 	</div>
 </div>

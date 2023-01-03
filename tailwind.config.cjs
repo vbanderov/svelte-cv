@@ -4,7 +4,9 @@ module.exports = {
 	theme: {
 		extend: {
 			screens: {
-				print: { raw: 'print' }
+				print: { raw: 'print' },
+				page: '896px',
+				md: { raw: '(min-width: 768px),print' }
 			},
 			fontFamily: {
 				sans: [
