@@ -2,7 +2,7 @@
 	import DownloadIcon from '$lib/assets/download.svg';
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
-	import { iv, salt, testString, testStringEncrypted } from './secrets';
+	import { iv, salt, testString, testStringEncrypted } from '$lib/secrets';
 	import { AES } from 'crypto-js';
 	import Utf8 from 'crypto-js/enc-utf8';
 	import CryptoJS from 'crypto-js';

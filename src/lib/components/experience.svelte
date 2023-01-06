@@ -1,5 +1,5 @@
 <script>
-	import experience from './experience';
+	import config from '$lib/config';
 </script>
 
 <div class="dark:text-white">
@@ -8,7 +8,7 @@
 	</div>
 
 	<div class="ml-2 space-y-2  ">
-		{#each experience as job}
+		{#each config.experience as job}
 			<div>
 				<div class="ml-[-4px] text-lg font-bold ">{job.employer.title}</div>
 				<div class=" space-y-2 border-l-2 border-gray-300  pl-2">

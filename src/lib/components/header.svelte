@@ -8,13 +8,14 @@
 		testString,
 		salt,
 		iv
-	} from './secrets';
+	} from '$lib/secrets';
 	import Utf8 from 'crypto-js/enc-utf8';
 	import CryptoJS from 'crypto-js';
 	import { onMount } from 'svelte';
 	import PhoneIcon from '$lib/assets/device-mobile.svg';
 	import MailIcon from '$lib/assets/mail.svg';
 	import LocationIcon from '$lib/assets/location.svg';
+	import config from '$lib/config';
 
 	let phoneDecrypted = '';
 	let emailDecrypted = '';
@@ -49,9 +50,9 @@
 	<div
 		class="flex-1 flex-col items-stretch text-center text-blue-700 dark:text-orange-300 md:text-left"
 	>
-		<div class="whitespace-nowrap text-3xl font-semibold tracking-wider">Vladimir Banderov</div>
+		<div class="whitespace-nowrap text-3xl font-semibold tracking-wider">{config.name}</div>
 		<div class="text-base">
-			Senior Full Stack Engineer with extensive TypeScript experience and proven leadership skills.
+			{config.tagLine}
 		</div>
 	</div>
 

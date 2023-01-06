@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Experience from '$lib/experience.svelte';
-	import Header from '$lib/header.svelte';
-	import Download from '$lib/download.svelte';
-	import Education from '$lib/education.svelte';
+	import Experience from '$lib/components/experience.svelte';
+	import Header from '$lib//components/header.svelte';
+	import Download from '$lib/components/download.svelte';
+	import Education from '$lib/components/education.svelte';
 </script>
 
 <svelte:head>

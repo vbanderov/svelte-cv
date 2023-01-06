@@ -13,6 +13,10 @@ interface Job {
 	positions: Position[];
 }
 
+const name = 'Vladimir Banderov';
+const tagLine =
+	'Senior Full Stack Engineer with extensive TypeScript experience and proven leadership skills.';
+
 const experience: Job[] = [
 	{
 		employer: { title: 'Skillz' },
@@ -112,4 +116,4 @@ const experience: Job[] = [
 	}
 ];
 
-export default experience;
+export default { name, tagLine, experience };
