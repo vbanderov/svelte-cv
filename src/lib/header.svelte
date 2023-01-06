@@ -60,7 +60,7 @@
 	>
 		{#if emailDecrypted}
 			<div class="flex flex-row items-center space-x-1">
-				<img src={MailIcon} alt="Email icon" class="max-w-4 max-h-4 rounded-full dark:hidden" />
+				<img src={MailIcon} alt="Email icon" class="max-w-4 max-h-4 dark:hidden" />
 
 				<div>
 					<a href="mailto:{emailDecrypted}">{emailDecrypted}</a>

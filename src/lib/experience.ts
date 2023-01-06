@@ -80,6 +80,35 @@ const experience: Job[] = [
 				technologies: ['AWS', 'NGINX', 'SQL', 'REST API']
 			}
 		]
+	},
+	{
+		employer: { title: 'Home Credit & Finance Bank' },
+		positions: [
+			{
+				title: 'Processing systems specialist',
+				startDate: 'Jul 2013',
+				endDate: 'Oct 2014',
+				bulletPoints: [
+					'Setup and maintenance of bank card processing systems',
+					'Execution of DML and DDL operations on Oracle databases, PL/SQL scripts writing',
+					'Processing of support tickets and change requests in BMC Remedy',
+					'Communication with the developers on account of bug fixing and new functionality implementation using Atlassian JIRA',
+					'Communication with customer support services of Visa and Mastercard'
+				],
+				technologies: ['Oracle PL/SQL', 'JIRA']
+			},
+			{
+				title: 'IT infrastructure monitoring specialist',
+				startDate: 'Mar 2012',
+				endDate: 'Jul 2013',
+				bulletPoints: [
+					'Health monitoring of critical pieces of enterprise-grade IT infrastructure, including: servers, Internet connections, network and storage solutions (Nagios, SCOM)',
+					'Troubleshooting of common issues, mostly related to Cisco routers',
+					'Escalation of the incidents and further cross-team coordination'
+				],
+				technologies: ['Windows/Linux servers', 'Cisco', 'Nagios', 'SCOM']
+			}
+		]
 	}
 ];
 
