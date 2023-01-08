@@ -13,7 +13,7 @@
 						<div class="ml-2 break-inside-avoid">
 							<div class="flex flex-row items-center">
 								<span
-									class="absolute inline-block h-4 w-4 -translate-x-[25px] rounded-full border-4 border-white bg-blue-800 dark:border-slate-900"
+									class="absolute inline-block h-4 w-4 -translate-x-[25px] rounded-full border-4 border-white bg-blue-800 dark:border-slate-900 dark:bg-orange-300"
 								/>
 								<div class="text-lg font-bold text-blue-800 dark:text-orange-300">
 									{position.title}

@@ -31,7 +31,7 @@
 	<a rel="external" href={filename} download="CV-Banderov.pdf" title="Download PDF">
 		<div
 			transition:fly={{ y: 200, duration: 2000 }}
-			class="fixed bottom-14 right-14 rounded-full bg-slate-500 p-2 shadow-xl shadow-black/60  hover:bg-sky-700 dark:bg-white print:hidden"
+			class="fixed bottom-[5vw] right-[5vw] rounded-full bg-slate-500 p-2 shadow-xl shadow-black/60 hover:bg-sky-700 dark:bg-white dark:shadow-black/80 print:hidden"
 		>
 			<img src={DownloadIcon} alt="Download Icon" />
 		</div>

@@ -12,7 +12,7 @@
 	import Utf8 from 'crypto-js/enc-utf8';
 	import CryptoJS from 'crypto-js';
 	import { onMount } from 'svelte';
-	import PhoneIcon from '$lib/assets/device-mobile.svg';
+	import PhoneIcon from '$lib/assets/phone.svg';
 	import MailIcon from '$lib/assets/mail.svg';
 	import LocationIcon from '$lib/assets/location.svg';
 	import config from '$lib/config';
@@ -57,29 +57,32 @@
 	</div>
 
 	<div
-		class="flex flex-row flex-wrap justify-evenly space-x-2 text-sm md:flex-col md:justify-start md:space-x-0 md:space-y-2"
+		class="flex flex-row flex-wrap justify-evenly space-x-3 text-sm md:flex-col md:justify-start md:space-x-0 md:space-y-2"
 	>
 		{#if emailDecrypted}
-			<div class="flex flex-row items-center space-x-1">
-				<img src={MailIcon} alt="Email icon" class="max-w-4 max-h-4 dark:hidden" />
+			<a href="mailto:{emailDecrypted}">
+				<div class="flex flex-row items-center space-x-1">
+					<img src={MailIcon} alt="Email icon" class="h-5 w-5 md:h-4 md:w-4" />
 
-				<div>
-					<a href="mailto:{emailDecrypted}">{emailDecrypted}</a>
-				</div>
-			</div>
+					<div class="hidden md:block">
+						{emailDecrypted}
+					</div>
+				</div></a
+			>
 		{/if}
 
-		{#if phoneDecrypted}
-			<div class="flex flex-row items-center space-x-1">
-				<img src={PhoneIcon} alt="Phone icon" class="max-w-4 max-h-4  dark:hidden" />
-				<div>
-					<a href="tel:{phoneDecrypted}">{phoneDecrypted}</a>
-				</div>
-			</div>
+		{#if phoneDecrypted}<a href="tel:{phoneDecrypted}">
+				<div class="flex flex-row items-center space-x-1">
+					<img src={PhoneIcon} alt="Phone icon" class="h-5 w-5 md:h-4  md:w-4" />
+					<div class="hidden md:block">
+						{phoneDecrypted}
+					</div>
+				</div></a
+			>
 		{/if}
 
 		<div class="flex flex-row items-center space-x-1">
-			<img src={LocationIcon} alt="Location icon" class="max-w-4 max-h-4  dark:hidden" />
+			<img src={LocationIcon} alt="Location icon" class="h-5 w-5 md:h-4  md:w-4" />
 			<div>Calgary, AB</div>
 		</div>
 	</div>
