@@ -48,7 +48,7 @@
 		<img src={avatar} class="rounded-full" alt="avatar" />
 	</div>
 	<div
-		class="flex-1 flex-col items-stretch text-center text-blue-700 dark:text-orange-300 md:text-left"
+		class="flex-1 flex-col items-stretch text-center text-blue-800 dark:text-orange-300 md:text-left"
 	>
 		<div class="whitespace-nowrap text-3xl font-semibold tracking-wider">{config.name}</div>
 		<div class="text-base">
