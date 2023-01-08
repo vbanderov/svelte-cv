@@ -1,43 +1,30 @@
 <script lang="ts">
 	import avatar from '$lib/assets/avatar.jpeg';
-	import AES from 'crypto-js/aes';
-	import {
-		phoneEncrypted,
-		emailEncrypted,
-		testStringEncrypted,
-		testString,
-		salt,
-		iv
-	} from '$lib/secrets';
-	import Utf8 from 'crypto-js/enc-utf8';
-	import CryptoJS from 'crypto-js';
+
 	import { onMount } from 'svelte';
 	import PhoneIcon from '$lib/assets/phone.svg';
 	import MailIcon from '$lib/assets/mail.svg';
 	import LocationIcon from '$lib/assets/location.svg';
 	import config from '$lib/config';
+	import { decryptContactInfo } from '$lib/helpers';
 
-	let phoneDecrypted = '';
-	let emailDecrypted = '';
+	let phone = '';
+	let email = '';
 	let password: string | undefined;
 
+	// obatain password during SSG for PDF generation
 	password = import.meta.env['VITE_ENCRYPTION_PASSWORD'];
 
 	onMount(() => {
+		// obtain password during runtime
 		password = password ?? window.location.hash.slice(1);
-		const config = {
-			padding: CryptoJS.pad.Pkcs7,
-			mode: CryptoJS.mode.CBC,
-			iv: CryptoJS.enc.Hex.parse(iv)
-		};
-		const key = CryptoJS.PBKDF2(password, CryptoJS.enc.Hex.parse(salt), { keySize: 256 / 32 });
 
-		if (!password || AES.decrypt(testStringEncrypted, key, config).toString(Utf8) !== testString) {
-			return;
-		}
+		const contactInfo = decryptContactInfo(password);
 
-		phoneDecrypted = AES.decrypt(phoneEncrypted, key, config).toString(Utf8);
-		emailDecrypted = AES.decrypt(emailEncrypted, key, config).toString(Utf8);
+		if (!contactInfo) return;
+
+		phone = contactInfo.phone;
+		email = contactInfo.email;
 	});
 </script>
 
@@ -59,23 +46,23 @@
 	<div
 		class="flex flex-row flex-wrap justify-evenly space-x-3 text-sm md:flex-col md:justify-start md:space-x-0 md:space-y-2"
 	>
-		{#if emailDecrypted}
-			<a href="mailto:{emailDecrypted}">
+		{#if email}
+			<a href="mailto:{email}">
 				<div class="flex flex-row items-center space-x-1">
 					<img src={MailIcon} alt="Email icon" class="h-5 w-5 md:h-4 md:w-4" />
 
 					<div class="hidden md:block">
-						{emailDecrypted}
+						{email}
 					</div>
 				</div></a
 			>
 		{/if}
 
-		{#if phoneDecrypted}<a href="tel:{phoneDecrypted}">
+		{#if phone}<a href="tel:{phone}">
 				<div class="flex flex-row items-center space-x-1">
 					<img src={PhoneIcon} alt="Phone icon" class="h-5 w-5 md:h-4  md:w-4" />
 					<div class="hidden md:block">
-						{phoneDecrypted}
+						{phone}
 					</div>
 				</div></a
 			>
