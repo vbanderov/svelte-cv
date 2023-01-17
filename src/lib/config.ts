@@ -30,7 +30,15 @@ const experience: Job[] = [
 					'Integrating and expanding existing backend services',
 					'Continuous Integration and Deployment configuration in GitHub'
 				],
-				technologies: ['TypeScript', 'React Native', 'Node.js', 'Go', 'Kubernetes', 'AWS']
+				technologies: [
+					'TypeScript',
+					'React Native',
+					'Node.js',
+					'Go',
+					'Kubernetes',
+					'AWS',
+					'Terraform'
+				]
 			},
 			{
 				title: 'Senior Full Stack Engineer - Developer Platform',
@@ -41,7 +49,7 @@ const experience: Job[] = [
 					'Building microservices to support game developers and enrich player experience',
 					'Continuous Integration and Deployment configuration in GitHub'
 				],
-				technologies: ['TypeScript', 'React', 'Node.js', 'Ruby On Rails', 'Kubernetes', 'AWS']
+				technologies: ['TypeScript', 'React', 'Node.js', 'Kubernetes', 'AWS', 'Terraform']
 			}
 		]
 	},
