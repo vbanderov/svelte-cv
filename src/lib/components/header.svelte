@@ -5,6 +5,7 @@
 	import PhoneIcon from '$lib/assets/phone.svg';
 	import MailIcon from '$lib/assets/mail.svg';
 	import LocationIcon from '$lib/assets/location.svg';
+	import LinkedInIcon from '$lib/assets/linkedin.svg';
 	import config from '$lib/config';
 	import { decryptContactInfo } from '$lib/helpers';
 
@@ -67,6 +68,13 @@
 				</div></a
 			>
 		{/if}
+
+		<a href="https://www.linkedin.com/in/vladimir-banderov/" target="_blank" rel="noreferrer">
+			<div class="flex flex-row items-center space-x-1">
+				<img src={LinkedInIcon} alt="LinkedIn icon" class="h-5 w-5 md:h-4  md:w-4" />
+				<div class="hidden md:block">LinkedIn</div>
+			</div>
+		</a>
 
 		<div class="flex flex-row items-center space-x-1">
 			<img src={LocationIcon} alt="Location icon" class="h-5 w-5 md:h-4  md:w-4" />
