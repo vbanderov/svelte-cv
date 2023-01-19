@@ -26,8 +26,8 @@ const experience: Job[] = [
 				startDate: 'September 2022',
 				endDate: 'Now',
 				bulletPoints: [
-					'Developing React Native app',
-					'Integrating and expanding existing backend services',
+					'Developing React Native app from scratch',
+					'Creating new and expanding existing microservices in order to ingerate the new app into Skillz infrastructure',
 					'Continuous Integration and Deployment configuration in GitHub'
 				],
 				technologies: [
@@ -36,8 +36,10 @@ const experience: Job[] = [
 					'Node.js',
 					'Go',
 					'Kubernetes',
-					'AWS',
-					'Terraform'
+					'AWS (DynamoDB, SQS)',
+					'Terraform',
+					'MySQL',
+					'Snowflake'
 				]
 			},
 			{
@@ -47,9 +49,19 @@ const experience: Job[] = [
 				bulletPoints: [
 					'Developer Console - The main tool used by game developers to setup their games on Skillz platform',
 					'Building microservices to support game developers and enrich player experience',
+					'Mentoring junior- and mid-level engineers',
 					'Continuous Integration and Deployment configuration in GitHub'
 				],
-				technologies: ['TypeScript', 'React', 'Node.js', 'Kubernetes', 'AWS', 'Terraform']
+				technologies: [
+					'TypeScript',
+					'React',
+					'Node.js',
+					'Kubernetes',
+					'AWS (DynamoDB, SQS, S3)',
+					'Terraform',
+					'MySQL',
+					'Snowflake'
+				]
 			}
 		]
 	},
@@ -124,4 +136,10 @@ const experience: Job[] = [
 	}
 ];
 
-export default { name, tagLine, experience };
+const highlights = [
+	'Expertise in delivering full stack progressive web applications from a whiteboard to end user browsers',
+	'Experience creating entire web application infrastructure from scratch, including Kuberntes clusters, networking, microservices, API, CI/CD and databases',
+	'Proven ability to take the responsibility for a project and deliver it on time, while keeping positive attitude within a team'
+];
+
+export default { name, tagLine, experience, highlights };
