@@ -3,7 +3,7 @@
 	import Header from '$lib//components/header.svelte';
 	import Download from '$lib/components/download.svelte';
 	import Education from '$lib/components/education.svelte';
-	import Highlights from '$lib/components/highlights.svelte';
+	import Expertise from '$lib/components/expertise.svelte';
 </script>
 
 <svelte:head>
@@ -21,7 +21,7 @@
 	>
 		<Header />
 
-		<Highlights />
+		<Expertise />
 
 		<Education />
 

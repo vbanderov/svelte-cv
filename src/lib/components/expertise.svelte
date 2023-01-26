@@ -3,10 +3,10 @@
 	import config from '$lib/config';
 </script>
 
-<Section title="Highlights">
+<Section title="Expertise">
 	<ul class="list-inside list-disc pl-2">
-		{#each config.highlights as highlight}
-			<li><span class="ml-[-8px]">{highlight}</span></li>
+		{#each config.expertise as expertise}
+			<li><span class="ml-[-8px]">{expertise}</span></li>
 		{/each}
 	</ul>
 </Section>

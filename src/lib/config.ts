@@ -9,6 +9,7 @@ interface Position {
 interface Job {
 	employer: {
 		title: string;
+		url: string;
 	};
 	positions: Position[];
 }
@@ -19,7 +20,7 @@ const tagLine =
 
 const experience: Job[] = [
 	{
-		employer: { title: 'Skillz' },
+		employer: { title: 'Skillz', url: 'https://www.linkedin.com/company/skillz/' },
 		positions: [
 			{
 				title: 'Senior Full Stack Engineer - R&D',
@@ -66,7 +67,7 @@ const experience: Job[] = [
 		]
 	},
 	{
-		employer: { title: 'Eviviz' },
+		employer: { title: 'Eviviz', url: 'https://www.linkedin.com/company/spintechit/' },
 		positions: [
 			{
 				title: 'Lead Web Developer',
@@ -106,7 +107,10 @@ const experience: Job[] = [
 		]
 	},
 	{
-		employer: { title: 'Home Credit & Finance Bank' },
+		employer: {
+			title: 'Home Credit & Finance Bank',
+			url: 'https://www.linkedin.com/company/home-credit-russia/'
+		},
 		positions: [
 			{
 				title: 'Processing systems specialist',
@@ -136,10 +140,9 @@ const experience: Job[] = [
 	}
 ];
 
-const highlights = [
-	'Expertise in delivering full stack progressive web applications from a whiteboard to end user browsers',
-	'Experience creating entire web application infrastructure from scratch, including Kuberntes clusters, networking, microservices, API, CI/CD and databases',
-	'Proven ability to take the responsibility for a project and deliver it on time, while keeping positive attitude within a team'
+const expertise = [
+	'Delivering full stack progressive web applications from a whiteboard to end user browsers',
+	'Creating entire web application infrastructure from scratch, including Kuberntes clusters, networking, microservices, API, CI/CD and databases'
 ];
 
-export default { name, tagLine, experience, highlights };
+export default { name, tagLine, experience, expertise };
