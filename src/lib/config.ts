@@ -141,8 +141,8 @@ const experience: Job[] = [
 ];
 
 const expertise = [
-	'Delivering full stack progressive web applications from a whiteboard to end user browsers',
-	'Creating entire web application infrastructure from scratch, including Kuberntes clusters, networking, microservices, API, CI/CD and databases'
+	'Delivering full stack web applications from a whiteboard to end user browsers using Angular, React and Express frameworks',
+	'Creating entire web application infrastructure from scratch on-premise and in AWS. Including Kuberntes clusters, networking, microservices, API, CI/CD and databases'
 ];
 
 export default { name, tagLine, experience, expertise };
