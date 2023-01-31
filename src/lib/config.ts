@@ -1,15 +1,16 @@
-interface Position {
+export interface Position {
 	title: string;
-	startDate: string;
-	endDate: string;
+	startDate: [number, number];
+	endDate?: [number, number];
 	bulletPoints: string[];
 	technologies: string[];
 }
 
-interface Job {
+export interface Job {
 	employer: {
 		title: string;
 		url: string;
+		location: string;
 	};
 	positions: Position[];
 }
@@ -20,12 +21,15 @@ const tagLine =
 
 const experience: Job[] = [
 	{
-		employer: { title: 'Skillz', url: 'https://www.linkedin.com/company/skillz/' },
+		employer: {
+			title: 'Skillz',
+			url: 'https://www.linkedin.com/company/skillz/',
+			location: 'Calgary, AB'
+		},
 		positions: [
 			{
 				title: 'Senior Full Stack Engineer - R&D',
-				startDate: 'September 2022',
-				endDate: 'Now',
+				startDate: [2022, 9],
 				bulletPoints: [
 					'Developing React Native app from scratch',
 					'Creating new and expanding existing microservices in order to ingerate the new app into Skillz infrastructure',
@@ -45,8 +49,8 @@ const experience: Job[] = [
 			},
 			{
 				title: 'Senior Full Stack Engineer - Developer Platform',
-				startDate: 'March 2021',
-				endDate: 'August 2022',
+				startDate: [2021, 3],
+				endDate: [2022, 8],
 				bulletPoints: [
 					'Developer Console - The main tool used by game developers to setup their games on Skillz platform',
 					'Building microservices to support game developers and enrich player experience',
@@ -67,12 +71,16 @@ const experience: Job[] = [
 		]
 	},
 	{
-		employer: { title: 'Eviviz', url: 'https://www.linkedin.com/company/spintechit/' },
+		employer: {
+			title: 'Eviviz',
+			url: 'https://www.linkedin.com/company/spintechit/',
+			location: 'Vancouver, BC'
+		},
 		positions: [
 			{
 				title: 'Lead Web Developer',
-				startDate: 'April 2017',
-				endDate: 'February 2021',
+				startDate: [2017, 4],
+				endDate: [2021, 2],
 				bulletPoints: [
 					'Design and Development of Progressive Web Apps for HEOR data capture, visualization and analysis with MEAN stack',
 					'Supervise and mentor team of 3 developers',
@@ -94,8 +102,8 @@ const experience: Job[] = [
 			},
 			{
 				title: 'Infrastructure Manager',
-				startDate: 'Oct 2014',
-				endDate: 'Apr 2017',
+				startDate: [2014, 10],
+				endDate: [2017, 4],
 				bulletPoints: [
 					'Design, Configuration and management of on-premise and AWS infrastructure, including networking, servers and storage solutions',
 					'Development of various data aggregation solutions, leveraging REST API, SQL, Python, PowerShell and Bash scripts',
@@ -109,13 +117,14 @@ const experience: Job[] = [
 	{
 		employer: {
 			title: 'Home Credit & Finance Bank',
-			url: 'https://www.linkedin.com/company/home-credit-russia/'
+			url: 'https://www.linkedin.com/company/home-credit-russia/',
+			location: 'Russia'
 		},
 		positions: [
 			{
 				title: 'Processing systems specialist',
-				startDate: 'Jul 2013',
-				endDate: 'Oct 2014',
+				startDate: [2013, 7],
+				endDate: [2014, 10],
 				bulletPoints: [
 					'Setup and maintenance of bank card processing systems',
 					'Execution of DML and DDL operations on Oracle databases, PL/SQL scripts writing',
@@ -127,8 +136,8 @@ const experience: Job[] = [
 			},
 			{
 				title: 'IT infrastructure monitoring specialist',
-				startDate: 'Mar 2012',
-				endDate: 'Jul 2013',
+				startDate: [2012, 3],
+				endDate: [2013, 7],
 				bulletPoints: [
 					'Health monitoring of critical pieces of enterprise-grade IT infrastructure, including: servers, Internet connections, network and storage solutions (Nagios, SCOM)',
 					'Troubleshooting of common issues, mostly related to Cisco routers',
