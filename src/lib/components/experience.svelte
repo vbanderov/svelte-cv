@@ -7,7 +7,7 @@
 <Section title="Experience">
 	<div class="ml-2 space-y-4">
 		{#each config.experience as job}
-			<div class="break-inside-avoid">
+			<div>
 				<a href={job.employer.url} target="_blank" rel="noreferrer">
 					<div class="ml-[-4px] text-xl font-bold">{job.employer.title}</div>
 				</a>
