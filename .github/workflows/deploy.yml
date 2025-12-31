@@ -43,10 +43,14 @@ jobs:
         run: npm run build
         env:
           VITE_ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
+      - name: Start local server
+        run: npx serve -s build -l 3000 &
+      - name: Wait for server to start
+        run: sleep 3
       - name: Generate PDF version
         uses: narthanaj/html-to-pdf-action@v1.0.0
         with:
-          source: ./build/index.html
+          source: http://localhost:3000/#${{ secrets.ENCRYPTION_PASSWORD }}
           output: ./CV-Banderov.pdf
           format: 'Letter'
           margin: '10,10,10,10'
