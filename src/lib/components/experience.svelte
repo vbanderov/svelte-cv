@@ -9,16 +9,16 @@
 		{#each config.experience as job}
 			<div>
 				<a href={job.employer.url} target="_blank" rel="noreferrer">
-					<div class="ml-[-4px] text-xl font-bold">{job.employer.title}</div>
+					<div class="ml-[-4px] text-xl font-bold break-after-avoid">{job.employer.title}</div>
 				</a>
 
 				<div class=" border-l-2 border-gray-300 pl-2">
-					<div class="pb-1">{getDuration(job)} | {job.employer.location}</div>
+					<div class="pb-1 break-after-avoid">{getDuration(job)} | {job.employer.location}</div>
 
 					<div class="space-y-4">
 						{#each job.positions as position}
-							<div class="ml-2 break-inside-avoid">
-								<div class="flex flex-row items-center">
+							<div class="ml-2">
+								<div class="flex flex-row items-center break-after-avoid">
 									<span
 										class="absolute inline-block h-4 w-4 -translate-x-[25px] rounded-full border-4 border-white bg-blue-800 dark:border-slate-900 dark:bg-orange-300"
 									/>
@@ -26,7 +26,7 @@
 										{position.title}
 									</div>
 								</div>
-								<div class="font-bold">
+								<div class="font-bold break-after-avoid">
 									{formatPositionPeriod(position)}
 								</div>
 								<div class="ml-2 space-y-2">

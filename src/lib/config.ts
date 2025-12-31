@@ -17,7 +17,7 @@ export interface Job {
 
 const name = 'Vladimir Banderov';
 const tagLine =
-	'Engineering Leader with 12+ years in full-stack development, specializing in building high-performing teams and scaling technology solutions that drive measurable business value in fintech and beyond.';
+	'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams and scalable tech solutions driving business value in fintech and beyond.';
 
 const experience: Job[] = [
 	{
@@ -165,11 +165,9 @@ const experience: Job[] = [
 ];
 
 const expertise = [
-	'Leading cross-functional tech teams to deliver high-impact features in large-scale applications, fostering collaboration and ensuring efficient project outcomes.',
-	'Driving strategic tech adoptions that enhance productivity, such as AI tools resulting in 150% user adoption growth and reducing routine task time from 25% to 10-12%.',
-	'Championing backend architecture improvements for workflow microservices, enabling 80% code reuse across multiple applications and generating ~$9M annual cost savings.',
-	'Building and optimizing infrastructure in cloud and on-premise environments, including scalable microservices and CI/CD pipelines, to support reliable and efficient operations.',
-	'Mentoring engineers and optimizing hiring processes, such as pre-screening assessments that reduced initial interviews by 60%, enabling recruitment of top talent.'
+	'Leading cross-functional tech teams to deliver high-impact features, mentoring engineers, and optimizing hiring processes to foster collaboration and recruit top talent efficiently.',
+	'Driving strategic tech adoptions, such as AI tools boosting user adoption and reducing routine task time, alongside backend architecture improvements enabling code reuse and cost savings.',
+	'Building and optimizing scalable infrastructure in cloud and on-premise environments for system architecture, optimization, and addressing complex workflow challenges.'
 ];
 
 export default { name, tagLine, experience, expertise };
