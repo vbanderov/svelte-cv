@@ -39,28 +39,8 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm ci
-      - name: Build for PDF
-        run: npm run build
-        env:
-          VITE_ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
-      - name: Start local server
-        run: npx serve -s build -l 3000 &
-      - name: Wait for server to start
-        run: sleep 3
-      - name: Generate PDF version
-        uses: narthanaj/html-to-pdf-action@v1.0.0
-        with:
-          source: http://localhost:3000/#${{ secrets.ENCRYPTION_PASSWORD }}
-          output: ./CV-Banderov.pdf
-          format: 'Letter'
-          margin: '10,10,10,10'
-          print_background: 'true'
       - name: Build for GitHub Pages
         run: BASE_URI=/svelte-cv npm run build
-      - name: Add PDF to build folder
-        run: cp ./CV-Banderov.pdf ./build/$VITE_ENCRYPTION_PASSWORD.pdf
-        env:
-          VITE_ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
@@ -68,6 +48,20 @@ jobs:
           path: 'build/'
       - name: Deploy to GitHub Pages
         id: deployment
+        uses: actions/deploy-pages@v4.0.5
+      - name: Generate PDF from deployed page
+        uses: narthanaj/html-to-pdf-action@v1.0.0
+        with:
+          source: ${{ steps.deployment.outputs.page_url }}#${{ secrets.ENCRYPTION_PASSWORD }}
+          output: ./CV-Banderov.pdf
+          format: 'Letter'
+          margin: '10,10,10,10'
+          print_background: 'true'
+      - name: Upload PDF to GitHub Pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: 'CV-Banderov.pdf'
+      - name: Deploy PDF to GitHub Pages
         uses: actions/deploy-pages@v4.0.5
       - uses: geekyeggo/delete-artifact@v5.1.0
         with:
