@@ -41,7 +41,7 @@ jobs:
         env:
           VITE_ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
       - name: Generate PDF version
-        uses: narthanaj/html-to-pdf-action@v1
+        uses: narthanaj/html-to-pdf-action@v1.0.0
         with:
           htmlFile: ./build/index.html
           outputFile: ./CV-Banderov.pdf
