@@ -57,11 +57,13 @@ jobs:
           format: 'Letter'
           margin: '10,10,10,10'
           print_background: 'true'
-      - name: Upload PDF to GitHub Pages
+      - name: Add PDF to build folder
+        run: cp ./CV-Banderov.pdf ./build/
+      - name: Upload updated artifact with PDF
         uses: actions/upload-pages-artifact@v4
         with:
-          path: 'CV-Banderov.pdf'
-      - name: Deploy PDF to GitHub Pages
+          path: 'build/'
+      - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4.0.5
       - uses: geekyeggo/delete-artifact@v5.1.0
         with:
