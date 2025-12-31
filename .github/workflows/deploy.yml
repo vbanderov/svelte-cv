@@ -61,7 +61,10 @@ jobs:
           path: 'build/'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4.0.5
+        permissions:
+          pages: write      # to deploy to Pages
+          id-token: write   # to verify the deployment originates from an appropriate source
       - uses: geekyeggo/delete-artifact@v2
         with:
           name: github-pages
