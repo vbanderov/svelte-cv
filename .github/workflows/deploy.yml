@@ -41,11 +41,13 @@ jobs:
         env:
           VITE_ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
       - name: Generate PDF version
-        uses: LukaszLapaj/html-to-pdf-action@2.0.0
+        uses: narthanaj/html-to-pdf-action@v1
         with:
           htmlFile: ./build/index.html
           outputFile: ./CV-Banderov.pdf
-          pdfOptions: '{"format": "Letter", "margin": {"top": "10mm", "left": "10mm", "right": "10mm", "bottom": "10mm"}, "printBackground": true}'
+          format: 'Letter'
+          margin: '10,10,10,10'
+          print_background: 'true'
       - name: Build for GitHub Pages
         run: BASE_URI=/svelte-cv npm run build
       - name: Add PDF to build folder
