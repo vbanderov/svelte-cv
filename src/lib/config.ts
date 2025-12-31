@@ -22,6 +22,34 @@ const tagLine =
 const experience: Job[] = [
 	{
 		employer: {
+			title: 'RBC',
+			url: 'https://www.linkedin.com/company/royal-bank-of-canada/',
+			location: 'Calgary, AB'
+		},
+		positions: [
+			{
+				title: 'Lead Full Stack Developer',
+				startDate: [2023, 2],
+				bulletPoints: [
+					'Led a squad of 4 developers, 2 QAs, BA, and PO in delivering features for a large-scale wealth management application; managed 3 FTEs and 2 contractors, fostering collaboration across a journey of 6 squads.',
+					"Launched GenAI Champions initiative to drive GitHub Copilot adoption, increasing active users by 150% in 6 months; reduced unit test development time from 25% to 10-12%, boosting overall developer productivity and supporting RBC's enterprise AI goals.",
+					'Championed NestJS with TypeScript for a new Document Workflow microservice backend, replacing vanilla Node.js/Express; achieved 80% code reuse in applications like KYC (Know Your Client), NAAF (New Account Application Forms), and AOIF, saving advisors ~80% time per process and generating ~$9M annual cost savings.',
+					'Optimized development processes, including NX monorepo setup for backend reusability, pipeline migrations to Helios/OCP4 using Kubernetes expertise, and test-coverage enforcement, resulting in improved efficiency, reduced defects, and lower costs through containerized infrastructure.',
+					'Designed and implemented a CodeSignal pre-screening assessment for hiring, reducing first-level interviews by 60% and enabling efficient recruitment of top talent; adopted by multiple teams department-wide.'
+				],
+				technologies: [
+					'Engineering Management',
+					'AI Adoption',
+					'Team Leadership',
+					'TypeScript',
+					'Angular',
+					'NestJS',
+				]
+			}
+		]
+	},
+	{
+		employer: {
 			title: 'Skillz',
 			url: 'https://www.linkedin.com/company/skillz/',
 			location: 'Calgary, AB'
@@ -30,6 +58,7 @@ const experience: Job[] = [
 			{
 				title: 'Senior Full Stack Engineer - R&D',
 				startDate: [2022, 9],
+				endDate: [2023, 1],
 				bulletPoints: [
 					'Developing React Native app from scratch',
 					'Creating new and expanding existing microservices in order to ingerate the new app into Skillz infrastructure',
