@@ -53,7 +53,7 @@ jobs:
         env:
           VITE_ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
         with:
           # Upload build
           path: 'build/'
