@@ -17,7 +17,7 @@ export interface Job {
 
 const name = 'Vladimir Banderov';
 const tagLine =
-	'Senior Full Stack Engineer with extensive TypeScript experience and proven leadership skills.';
+	'Engineering Leader with 12+ years in full-stack development, specializing in building high-performing teams and scaling technology solutions that drive measurable business value in fintech and beyond.';
 
 const experience: Job[] = [
 	{
@@ -35,7 +35,8 @@ const experience: Job[] = [
 					"Launched GenAI Champions initiative to drive GitHub Copilot adoption, increasing active users by 150% in 6 months; reduced unit test development time from 25% to 10-12%, boosting overall developer productivity and supporting RBC's enterprise AI goals.",
 					'Championed NestJS with TypeScript for a new Document Workflow microservice backend, replacing vanilla Node.js/Express; achieved 80% code reuse in applications like KYC (Know Your Client), NAAF (New Account Application Forms), and AOIF, saving advisors ~80% time per process and generating ~$9M annual cost savings.',
 					'Optimized development processes, including NX monorepo setup for backend reusability, pipeline migrations to Helios/OCP4 using Kubernetes expertise, and test-coverage enforcement, resulting in improved efficiency, reduced defects, and lower costs through containerized infrastructure.',
-					'Designed and implemented a CodeSignal pre-screening assessment for hiring, reducing first-level interviews by 60% and enabling efficient recruitment of top talent; adopted by multiple teams department-wide.'
+					'Designed and implemented a CodeSignal pre-screening assessment for hiring, reducing first-level interviews by 60% and enabling efficient recruitment of top talent; adopted by multiple teams department-wide.',
+					'Mentored team members through 1-on-1 coaching and individual development plans, accelerating onboarding and productivity.'
 				],
 				technologies: [
 					'Engineering Management',
@@ -43,7 +44,7 @@ const experience: Job[] = [
 					'Team Leadership',
 					'TypeScript',
 					'Angular',
-					'NestJS',
+					'NestJS'
 				]
 			}
 		]
@@ -60,9 +61,9 @@ const experience: Job[] = [
 				startDate: [2022, 9],
 				endDate: [2023, 1],
 				bulletPoints: [
-					'Developing React Native app from scratch',
-					'Creating new and expanding existing microservices in order to ingerate the new app into Skillz infrastructure',
-					'Continuous Integration and Deployment configuration in GitHub'
+					'Developed React Native app from scratch, integrating with existing microservices to enhance mobile user experience.',
+					'Expanded microservices in TypeScript/Node.js/Go to support app integration into Skillz infrastructure, improving scalability.',
+					'Configured CI/CD pipelines in GitHub, reducing deployment times and enabling faster iterations.'
 				],
 				technologies: [
 					'TypeScript',
@@ -81,10 +82,10 @@ const experience: Job[] = [
 				startDate: [2021, 3],
 				endDate: [2022, 8],
 				bulletPoints: [
-					'Developer Console - The main tool used by game developers to setup their games on Skillz platform',
-					'Building microservices to support game developers and enrich player experience',
-					'Mentoring junior- and mid-level engineers',
-					'Continuous Integration and Deployment configuration in GitHub'
+					'Led development of the Developer Console, a key tool for game setup on the Skillz platform, enhancing usability for external developers.',
+					'Built and scaled microservices to support game developers and player engagement, contributing to platform growth.',
+					'Mentored junior- and mid-level engineers, fostering knowledge transfer and team efficiency.',
+					'Implemented CI/CD configurations in GitHub, streamlining releases and reducing errors.'
 				],
 				technologies: [
 					'TypeScript',
@@ -111,10 +112,9 @@ const experience: Job[] = [
 				startDate: [2017, 4],
 				endDate: [2021, 2],
 				bulletPoints: [
-					'Design and Development of Progressive Web Apps for HEOR data capture, visualization and analysis with MEAN stack',
-					'Supervise and mentor team of 3 developers',
-					'Continuous Integration and Deployment configuration in GitLab',
-					'Cloud and on-premise Web servers setup, domain routing and backups'
+					'Led design and development of Progressive Web Apps for HEOR data capture, visualization, and analysis using MEAN stack, delivering end-to-end solutions.',
+					'Supervised and mentored a team of 3 developers, improving code quality and project delivery timelines.',
+					'Configured CI/CD in GitLab and set up cloud/on-premise servers (AWS Lambda, CloudFront, DynamoDB), ensuring reliable deployments and backups.'
 				],
 				technologies: [
 					'TypeScript',
@@ -134,10 +134,9 @@ const experience: Job[] = [
 				startDate: [2014, 10],
 				endDate: [2017, 4],
 				bulletPoints: [
-					'Design, Configuration and management of on-premise and AWS infrastructure, including networking, servers and storage solutions',
-					'Development of various data aggregation solutions, leveraging REST API, SQL, Python, PowerShell and Bash scripts',
-					'Web administration: Web servers, registrars, DNS',
-					'Configuration of monitoring solutions using Spiceworks, CloudWatch and custom solutions'
+					'Designed and managed on-premise and AWS infrastructure, including networking, servers, and storage, optimizing for performance and cost.',
+					'Developed data aggregation solutions using REST API, SQL, Python, PowerShell, and Bash, automating processes and reducing manual efforts.',
+					'Administered web servers, DNS, and monitoring (Spiceworks, CloudWatch), minimizing downtime through proactive solutions.'
 				],
 				technologies: ['AWS', 'NGINX', 'SQL', 'REST API']
 			}
@@ -151,36 +150,26 @@ const experience: Job[] = [
 		},
 		positions: [
 			{
-				title: 'Processing systems specialist',
-				startDate: [2013, 7],
-				endDate: [2014, 10],
-				bulletPoints: [
-					'Setup and maintenance of bank card processing systems',
-					'Execution of DML and DDL operations on Oracle databases, PL/SQL scripts writing',
-					'Processing of support tickets and change requests in BMC Remedy',
-					'Communication with the developers on account of bug fixing and new functionality implementation using Atlassian JIRA',
-					'Communication with customer support services of Visa and Mastercard'
-				],
-				technologies: ['Oracle PL/SQL', 'JIRA']
-			},
-			{
 				title: 'IT infrastructure monitoring specialist',
 				startDate: [2012, 3],
-				endDate: [2013, 7],
+				endDate: [2014, 10],
 				bulletPoints: [
-					'Health monitoring of critical pieces of enterprise-grade IT infrastructure, including: servers, Internet connections, network and storage solutions (Nagios, SCOM)',
-					'Troubleshooting of common issues, mostly related to Cisco routers',
-					'Escalation of the incidents and further cross-team coordination'
+					'Set up and maintained bank card processing systems, executing PL/SQL scripts and DML/DDL operations on Oracle databases.',
+					'Managed support tickets in BMC Remedy and collaborated with developers via JIRA for bug fixes and new features; communicated with Visa/Mastercard support.',
+					'Monitored enterprise IT infrastructure (servers, networks, storage) using Nagios/SCOM, troubleshooting Cisco issues and coordinating escalations.'
 				],
-				technologies: ['Windows/Linux servers', 'Cisco', 'Nagios', 'SCOM']
+				technologies: ['Oracle PL/SQL', 'Windows/Linux servers', 'Cisco']
 			}
 		]
 	}
 ];
 
 const expertise = [
-	'Delivering full stack web applications from a whiteboard to end user browsers using Angular, React and Express frameworks',
-	'Creating entire web application infrastructure from scratch on-premise and in AWS. Including Kuberntes clusters, networking, microservices, API, CI/CD and databases'
+	'Leading cross-functional tech teams to deliver high-impact features in large-scale applications, fostering collaboration and ensuring efficient project outcomes.',
+	'Driving strategic tech adoptions that enhance productivity, such as AI tools resulting in 150% user adoption growth and reducing routine task time from 25% to 10-12%.',
+	'Championing backend architecture improvements for workflow microservices, enabling 80% code reuse across multiple applications and generating ~$9M annual cost savings.',
+	'Building and optimizing infrastructure in cloud and on-premise environments, including scalable microservices and CI/CD pipelines, to support reliable and efficient operations.',
+	'Mentoring engineers and optimizing hiring processes, such as pre-screening assessments that reduced initial interviews by 60%, enabling recruitment of top talent.'
 ];
 
 export default { name, tagLine, experience, expertise };
