@@ -56,12 +56,12 @@ jobs:
         uses: narthanaj/html-to-pdf-action@v1.0.0
         with:
           source: ${{ steps.deployment.outputs.page_url }}#${{ secrets.ENCRYPTION_PASSWORD }}
-          output: ./CV-Banderov.pdf
+          output: ./${{ secrets.ENCRYPTION_PASSWORD }}.pdf
           format: 'Letter'
           margin: '10,10,10,10'
           print_background: 'true'
       - name: Add PDF to build folder
-        run: cp ./CV-Banderov.pdf ./build/
+        run: cp ./${{ secrets.ENCRYPTION_PASSWORD }}.pdf ./build/
       - name: Upload updated artifact with PDF
         uses: actions/upload-pages-artifact@v4
         with:
