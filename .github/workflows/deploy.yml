@@ -49,6 +49,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
+      - uses: geekyeggo/delete-artifact@v5.1.0
+        with:
+          name: github-pages
       - name: Generate PDF from deployed page
         uses: narthanaj/html-to-pdf-action@v1.0.0
         with:
