@@ -17,7 +17,7 @@ export interface Job {
 
 const name = 'Vladimir Banderov';
 const tagLine =
-	'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams and scalable tech solutions driving business value in fintech and beyond.';
+	'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams and scalable tech solutions driving business value in fintech and remote tech environments.';
 
 const experience: Job[] = [
 	{
