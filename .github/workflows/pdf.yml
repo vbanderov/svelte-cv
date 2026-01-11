@@ -19,6 +19,7 @@ concurrency:
 
 jobs:
   pdf-all:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     strategy:
       matrix: &company-matrix
@@ -28,6 +29,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: all-builds
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate PDF from deployed page
         uses: narthanaj/html-to-pdf-action@v1.0.0
         with:
