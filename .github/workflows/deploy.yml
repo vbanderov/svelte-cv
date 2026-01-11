@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: Initial Build and Deploy
 
 on:
   # Runs on pushes targeting the default branch
@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: &company-matrix
-        company: [default, companyA, companyB] # Add more companies as needed
+        company: [default, companyA] # Add more companies as needed
     permissions:
       contents: read
     steps:
@@ -90,63 +90,3 @@ jobs:
         uses: geekyeggo/delete-artifact@v5.1.0
         with:
           name: out-${{ matrix.company }}
-
-  pdf-all:
-    needs: deploy-all
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: *company-matrix
-    steps:
-      - name: Download all artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: all-builds
-      - name: Generate PDF from deployed page
-        uses: narthanaj/html-to-pdf-action@v1.0.0
-        with:
-          source: ${{ needs.deploy-all.outputs.deploy_url }}${{ matrix.company == 'default' && '' || '/' }}${{ matrix.company == 'default' && '' || matrix.company }}/index.html#${{ secrets.ENCRYPTION_PASSWORD }}
-          output: all-builds/out-${{ matrix.company }}/${{ secrets.ENCRYPTION_PASSWORD }}.pdf
-          format: 'Letter'
-          margin: '10,10,10,10'
-          print_background: 'true'
-      - name: Upload company artifact with PDF
-        uses: actions/upload-artifact@v4
-        with:
-          name: out-${{ matrix.company }}-withpdf
-          path: all-builds/out-${{ matrix.company }}
-
-  deploy-with-pdf:
-    needs: pdf-all
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    steps:
-      - name: Download all artifacts with PDFs
-        uses: actions/download-artifact@v4
-        with:
-          path: all-builds
-      - name: Combine all builds with PDFs
-        run: |
-          mkdir -p build
-          for d in all-builds/out-*-withpdf; do
-            company=$(basename "$d" | sed 's/^out-//' | sed 's/-withpdf$//')
-            mkdir -p build/$company
-            cp -r "$d"/* build/$company/
-          done
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: 'build/'
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4.0.5
-  delete-pdf-artifacts:
-    needs: deploy-with-pdf
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: *company-matrix
-    steps:
-      - name: Delete PDF artifact
-        uses: geekyeggo/delete-artifact@v5.1.0
-        with:
-          name: out-${{ matrix.company }}-withpdf
