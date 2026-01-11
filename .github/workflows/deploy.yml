@@ -88,13 +88,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
-  # delete-build-artifacts:
-  #   needs: deploy-all
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix: *company-matrix
-  #   steps:
-  #     - name: Delete build artifact
-  #       uses: geekyeggo/delete-artifact@v5.1.0
-  #       with:
-  #         name: out-${{ matrix.company }}
+  

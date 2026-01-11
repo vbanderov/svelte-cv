@@ -25,7 +25,7 @@
 
 		showDownloadButton = true;
 
-		const companySuffix = buildCompany === 'default' ? '' : `${buildCompany}/`;
+		const companySuffix = buildCompany ? `${buildCompany}/` : '';
 
 		filename = `/svelte-cv/${companySuffix}${s}.pdf`;
 	});
