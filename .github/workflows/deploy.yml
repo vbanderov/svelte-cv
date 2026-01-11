@@ -19,16 +19,12 @@ concurrency:
   group: 'pages'
   cancel-in-progress: true
 
-# Add more companies as needed
-x-company-matrix: &company-matrix
-  company: [default, companyA, companyB]
-
 jobs:
   build-all:
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        <<: *company-matrix
+      matrix: &company-matrix
+        company: [default, companyA, companyB] # Add more companies as needed
     permissions:
       contents: read
     steps:
@@ -88,8 +84,7 @@ jobs:
     needs: deploy-all
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        <<: *company-matrix
+      matrix: *company-matrix
     steps:
       - name: Delete build artifact
         uses: geekyeggo/delete-artifact@v5.1.0
@@ -100,8 +95,7 @@ jobs:
     needs: deploy-all
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        <<: *company-matrix
+      matrix: *company-matrix
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
@@ -150,8 +144,7 @@ jobs:
     needs: deploy-with-pdf
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        <<: *company-matrix
+      matrix: *company-matrix
     steps:
       - name: Delete PDF artifact
         uses: geekyeggo/delete-artifact@v5.1.0
