@@ -19,55 +19,112 @@ concurrency:
   group: 'pages'
   cancel-in-progress: true
 
+
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build-all:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        company: [default, companyA, companyB] # Add more companies as needed
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
       - run: npm ci
-      - name: Build for GitHub Pages
-        run: BASE_URI=/svelte-cv npm run build
+      - name: Build for company
+        run: |
+          if [ "${{ matrix.company }}" = "default" ]; then
+            BASE_URI=/svelte-cv npm run build
+          else
+            BASE_URI=/svelte-cv/${{ matrix.company }} VITE_BUILD_COMPANY=${{ matrix.company }} npm run build
+          fi
+      - name: Move build to company folder
+        run: |
+          mkdir -p out/${{ matrix.company }}
+          mv build/* out/${{ matrix.company }}/
+      - name: Upload company artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: out-${{ matrix.company }}
+          path: out/${{ matrix.company }}
+
+  deploy-all:
+    needs: build-all
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-builds
+      - name: Combine all builds
+        run: |
+          mkdir -p build
+          for d in all-builds/out-*; do
+            cp -r "$d"/* build/
+          done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          # Upload build
           path: 'build/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
-      - uses: geekyeggo/delete-artifact@v5.1.0
+      - name: Save deployed URL
+        run: echo "DEPLOY_URL=${{ steps.deployment.outputs.page_url }}" >> $GITHUB_ENV
+
+  pdf-all:
+    needs: deploy-all
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        company: [default, companyA, companyB] # Add more companies as needed
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
         with:
-          name: github-pages
+          path: all-builds
       - name: Generate PDF from deployed page
         uses: narthanaj/html-to-pdf-action@v1.0.0
         with:
-          source: ${{ steps.deployment.outputs.page_url }}#${{ secrets.ENCRYPTION_PASSWORD }}
-          output: ./${{ secrets.ENCRYPTION_PASSWORD }}.pdf
+          source: ${{ env.DEPLOY_URL }}${{ matrix.company == 'default' && '' || '/' }}${{ matrix.company == 'default' && '' || matrix.company }}/index.html#${{ secrets.ENCRYPTION_PASSWORD }}
+          output: all-builds/out-${{ matrix.company }}/${{ secrets.ENCRYPTION_PASSWORD }}.pdf
           format: 'Letter'
           margin: '10,10,10,10'
           print_background: 'true'
-      - name: Add PDF to build folder
-        run: cp ./${{ secrets.ENCRYPTION_PASSWORD }}.pdf ./build/
-      - name: Upload updated artifact with PDF
+      - name: Upload company artifact with PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: out-${{ matrix.company }}-pdf
+          path: all-builds/out-${{ matrix.company }}
+
+  deploy-with-pdf:
+    needs: pdf-all
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Download all artifacts with PDFs
+        uses: actions/download-artifact@v4
+        with:
+          path: all-builds
+      - name: Combine all builds with PDFs
+        run: |
+          mkdir -p build
+          for d in all-builds/out-*-pdf; do
+            cp -r "$d"/* build/
+          done
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: 'build/'
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4.0.5
-      - uses: geekyeggo/delete-artifact@v5.1.0
-        with:
-          name: github-pages

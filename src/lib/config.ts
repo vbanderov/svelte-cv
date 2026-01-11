@@ -1,9 +1,11 @@
+export type CompanyOverride<T> = T | { default: T; [company: string]: T };
+
 export interface Position {
 	title: string;
 	startDate: [number, number];
 	endDate?: [number, number];
-	bulletPoints: string[];
-	technologies: string[];
+	bulletPoints: CompanyOverride<string[]>;
+	technologies: CompanyOverride<string[]>;
 }
 
 export interface Job {
@@ -16,8 +18,24 @@ export interface Job {
 }
 
 const name = 'Vladimir Banderov';
-const tagLine =
-	'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams and scalable tech solutions driving business value in fintech and remote tech environments.';
+// Supports per-company overrides: string or { default: string, [company: string]: string }
+const tagLine: CompanyOverride<string> = {
+	default:
+		'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams and scalable tech solutions driving business value in fintech and remote tech environments.',
+	companyA: 'Custom tagline for CompanyA'
+};
+
+// Helper to support per-company overrides for arrays and strings
+// If VITE_BUILD_COMPANY is set at build time, use it as the default company context
+const buildCompany = import.meta.env.VITE_BUILD_COMPANY as string | undefined;
+
+export function resolveValue<T>(value: T | { default: T; [company: string]: T }): T {
+	if (typeof value === 'object' && value !== null && 'default' in value) {
+		if (buildCompany && value[buildCompany]) return value[buildCompany];
+		return value.default;
+	}
+	return value as T;
+}
 
 const experience: Job[] = [
 	{
@@ -30,22 +48,28 @@ const experience: Job[] = [
 			{
 				title: 'Lead Full Stack Developer',
 				startDate: [2023, 2],
-				bulletPoints: [
-					'Led a squad of 4 developers, 2 QAs, BA, and PO in delivering features for a large-scale wealth management application; managed 3 FTEs and 2 contractors, fostering collaboration across a journey of 6 squads.',
-					"Launched GenAI Champions initiative to drive GitHub Copilot adoption, increasing active users by 150% in 6 months; reduced unit test development time from 25% to 10-12%, boosting overall developer productivity and supporting RBC's enterprise AI goals.",
-					'Championed NestJS with TypeScript for a new Document Workflow microservice backend, replacing vanilla Node.js/Express; achieved 80% code reuse in applications like KYC (Know Your Client), NAAF (New Account Application Forms), and AOIF, saving advisors ~80% time per process and generating ~$9M annual cost savings.',
-					'Optimized development processes, including NX monorepo setup for backend reusability, pipeline migrations to Helios/OCP4 using Kubernetes expertise, and test-coverage enforcement, resulting in improved efficiency, reduced defects, and lower costs through containerized infrastructure.',
-					'Designed and implemented a CodeSignal pre-screening assessment for hiring, reducing first-level interviews by 60% and enabling efficient recruitment of top talent; adopted by multiple teams department-wide.',
-					'Mentored team members through 1-on-1 coaching and individual development plans, accelerating onboarding and productivity.'
-				],
-				technologies: [
-					'Engineering Management',
-					'AI Adoption',
-					'Team Leadership',
-					'TypeScript',
-					'Angular',
-					'NestJS'
-				]
+				bulletPoints: {
+					default: [
+						'Led a squad of 4 developers, 2 QAs, BA, and PO in delivering features for a large-scale wealth management application; managed 3 FTEs and 2 contractors, fostering collaboration across a journey of 6 squads.',
+						"Launched GenAI Champions initiative to drive GitHub Copilot adoption, increasing active users by 150% in 6 months; reduced unit test development time from 25% to 10-12%, boosting overall developer productivity and supporting RBC's enterprise AI goals.",
+						'Championed NestJS with TypeScript for a new Document Workflow microservice backend, replacing vanilla Node.js/Express; achieved 80% code reuse in applications like KYC (Know Your Client), NAAF (New Account Application Forms), and AOIF, saving advisors ~80% time per process and generating ~$9M annual cost savings.',
+						'Optimized development processes, including NX monorepo setup for backend reusability, pipeline migrations to Helios/OCP4 using Kubernetes expertise, and test-coverage enforcement, resulting in improved efficiency, reduced defects, and lower costs through containerized infrastructure.',
+						'Designed and implemented a CodeSignal pre-screening assessment for hiring, reducing first-level interviews by 60% and enabling efficient recruitment of top talent; adopted by multiple teams department-wide.',
+						'Mentored team members through 1-on-1 coaching and individual development plans, accelerating onboarding and productivity.'
+					],
+					companyA: ['Custom bullet point for company A']
+				},
+				technologies: {
+					default: [
+						'Engineering Management',
+						'AI Adoption',
+						'Team Leadership',
+						'TypeScript',
+						'Angular',
+						'NestJS'
+					]
+					// Example: companyA: [ ... ]
+				}
 			}
 		]
 	},
@@ -164,10 +188,13 @@ const experience: Job[] = [
 	}
 ];
 
-const expertise = [
-	'Leading cross-functional tech teams to deliver high-impact features, mentoring engineers, and optimizing hiring processes to foster collaboration and recruit top talent efficiently.',
-	'Driving strategic tech adoptions, such as AI tools boosting user adoption and reducing routine task time, alongside backend architecture improvements enabling code reuse and cost savings.',
-	'Building and optimizing scalable infrastructure in cloud and on-premise environments for system architecture, optimization, and addressing complex workflow challenges.'
-];
+const expertise: CompanyOverride<string[]> = {
+	default: [
+		'Leading cross-functional tech teams to deliver high-impact features, mentoring engineers, and optimizing hiring processes to foster collaboration and recruit top talent efficiently.',
+		'Driving strategic tech adoptions, such as AI tools boosting user adoption and reducing routine task time, alongside backend architecture improvements enabling code reuse and cost savings.',
+		'Building and optimizing scalable infrastructure in cloud and on-premise environments for system architecture, optimization, and addressing complex workflow challenges.'
+	]
+	// Example: companyA: [ ... ]
+};
 
 export default { name, tagLine, experience, expertise };

@@ -1,11 +1,13 @@
 <script>
 	import Section from '$lib/components/section.svelte';
-	import config from '$lib/config';
+	import config, { resolveValue } from '$lib/config';
+	import { page } from '$app/stores';
+	import { get } from 'svelte/store';
 </script>
 
 <Section title="Expertise">
 	<ul class="list-inside list-disc pl-2">
-		{#each config.expertise as expertise}
+		{#each resolveValue(config.expertise) as expertise}
 			<li><span class="ml-[-8px]">{expertise}</span></li>
 		{/each}
 	</ul>

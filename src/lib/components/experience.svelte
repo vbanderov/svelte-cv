@@ -1,5 +1,7 @@
 <script lang="ts">
-	import config from '$lib/config';
+	import config, { resolveValue } from '$lib/config';
+	import { page } from '$app/stores';
+	import { get } from 'svelte/store';
 	import Section from '$lib/components/section.svelte';
 	import { formatDate, formatPositionPeriod, getDuration } from '$lib/helpers';
 </script>
@@ -31,14 +33,14 @@
 								</div>
 								<div class="ml-2 space-y-2">
 									<ul class="list-inside list-disc">
-										{#each position.bulletPoints as point}
+										{#each resolveValue(position.bulletPoints) as point}
 											<li><span class="ml-[-8px]">{point}</span></li>
 										{/each}
 									</ul>
 
 									<div>
 										<span class="font-bold">Skills:</span>
-										{position.technologies.join(', ')}
+										{resolveValue(position.technologies).join(', ')}
 									</div>
 								</div>
 							</div>
