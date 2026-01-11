@@ -68,7 +68,9 @@ jobs:
         run: |
           mkdir -p build
           for d in all-builds/out-*; do
-            cp -r "$d"/* build/
+            company=$(basename "$d" | sed 's/^out-//')
+            mkdir -p build/$company
+            cp -r "$d"/* build/$company/
           done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
@@ -120,7 +122,9 @@ jobs:
         run: |
           mkdir -p build
           for d in all-builds/out-*-pdf; do
-            cp -r "$d"/* build/
+            company=$(basename "$d" | sed 's/^out-//' | sed 's/-pdf$//')
+            mkdir -p build/$company
+            cp -r "$d"/* build/$company/
           done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
