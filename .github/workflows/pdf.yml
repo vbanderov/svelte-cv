@@ -74,16 +74,16 @@ jobs:
         uses: actions/deploy-pages@v4
 
   delete-build-artifacts:
-      needs: deploy-all
-      runs-on: ubuntu-latest
-      strategy:
-        matrix: *company-matrix
-      steps:
-        - name: Delete build artifact
-          uses: geekyeggo/delete-artifact@v5.1.0
-          with:
-            name: out-${{ matrix.company }}
-        - name: Delete final build artifact
-          uses: geekyeggo/delete-artifact@v5.1.0
-          with:
-            name: final-out-${{ matrix.company }}
+    needs: deploy-all
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: *company-matrix
+    steps:
+      - name: Delete build artifact
+        uses: geekyeggo/delete-artifact@v5.1.0
+        with:
+          name: out-${{ matrix.company }}
+      - name: Delete final build artifact
+        uses: geekyeggo/delete-artifact@v5.1.0
+        with:
+          name: final-out-${{ matrix.company }}
