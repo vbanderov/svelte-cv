@@ -31,7 +31,7 @@ jobs:
         uses: narthanaj/html-to-pdf-action@v1.0.0
         with:
           # Root for default, /company/ for others
-          source: https://vbanderov.github.io/svelte-cv/${{ matrix.company == 'default' && '' || matrix.company }}${{ matrix.company == 'default' && '' || '/' }}index.html#${{ secrets.ENCRYPTION_PASSWORD }}
+          source: https://vbanderov.github.io/svelte-cv/${{ matrix.company == 'default' && 'index.html' || format('{0}/index.html', matrix.company) }}#${{ secrets.ENCRYPTION_PASSWORD }}
           output: out-${{ matrix.company }}/${{ secrets.ENCRYPTION_PASSWORD }}.pdf
           print_background: 'true'
 
