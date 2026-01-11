@@ -69,9 +69,17 @@ jobs:
         run: |
           mkdir -p build
           for d in all-builds/out-*; do
+            # Extract company name from folder name
             company=$(basename "$d" | sed 's/^out-//')
-            mkdir -p build/$company
-            cp -r "$d"/* build/$company/
+            
+            if [ "$company" = "default" ]; then
+              # Copy files directly to root of build folder
+              cp -r "$d"/* build/
+            else
+              # Create subdirectory for other companies
+              mkdir -p build/$company
+              cp -r "$d"/* build/$company/
+            fi
           done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

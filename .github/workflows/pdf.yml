@@ -2,14 +2,14 @@ name: PDF Build and Deploy
 
 on:
   workflow_run:
-    workflows: ['Initial Build and Deploy']
+    workflows: ["Initial Build and Deploy"]
     types: [completed]
 
 permissions:
   contents: read
   pages: write
   id-token: write
-  actions: read # Required to download artifacts from the trigger run
+  actions: read 
 
 jobs:
   pdf-all:
@@ -19,7 +19,7 @@ jobs:
       matrix:
         company: [default, companyA]
     steps:
-      - name: Download specific company artifact
+      - name: Download company artifact
         uses: actions/download-artifact@v4
         with:
           name: out-${{ matrix.company }}
@@ -30,12 +30,12 @@ jobs:
       - name: Generate PDF
         uses: narthanaj/html-to-pdf-action@v1.0.0
         with:
-          # Construct URL manually; needs.deploy-all is not available here
+          # Root for default, /company/ for others
           source: https://vbanderov.github.io/svelte-cv/${{ matrix.company == 'default' && '' || matrix.company }}${{ matrix.company == 'default' && '' || '/' }}index.html#${{ secrets.ENCRYPTION_PASSWORD }}
           output: out-${{ matrix.company }}/${{ secrets.ENCRYPTION_PASSWORD }}.pdf
           print_background: 'true'
 
-      - name: Upload merged company artifact
+      - name: Upload updated artifact
         uses: actions/upload-artifact@v4
         with:
           name: final-out-${{ matrix.company }}
@@ -52,13 +52,17 @@ jobs:
           pattern: final-out-*
           merge-multiple: false
 
-      - name: Combine and Deploy
+      - name: Combine with Root Logic
         run: |
           mkdir -p build
           for d in all-final/final-out-*; do
             company=$(basename "$d" | sed 's/^final-out-//')
-            mkdir -p build/$company
-            cp -r "$d"/* build/$company/
+            if [ "$company" = "default" ]; then
+              cp -r "$d"/* build/
+            else
+              mkdir -p build/$company
+              cp -r "$d"/* build/$company/
+            fi
           done
 
       - name: Upload to Pages

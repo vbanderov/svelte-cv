@@ -27,7 +27,7 @@ const tagLine: CompanyOverride<string> = {
 
 // Helper to support per-company overrides for arrays and strings
 // If VITE_BUILD_COMPANY is set at build time, use it as the default company context
-const buildCompany = import.meta.env.VITE_BUILD_COMPANY as string | undefined;
+export const buildCompany = import.meta.env.VITE_BUILD_COMPANY as string | undefined;
 
 export function resolveValue<T>(value: T | { default: T; [company: string]: T }): T {
 	if (typeof value === 'object' && value !== null && 'default' in value) {
