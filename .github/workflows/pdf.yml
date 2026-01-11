@@ -16,7 +16,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     strategy:
-      matrix:
+      matrix: &company-matrix
         company: [default, companyA]
     steps:
       - name: Download company artifact
@@ -74,7 +74,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
   delete-build-artifacts:
-    needs: deploy-all
+    needs: deploy-with-pdf
     runs-on: ubuntu-latest
     strategy:
       matrix: *company-matrix

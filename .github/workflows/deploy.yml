@@ -23,7 +23,7 @@ jobs:
   build-all:
     runs-on: ubuntu-latest
     strategy:
-      matrix: &company-matrix
+      matrix:
         company: [default, companyA] # Add more companies as needed
     permissions:
       contents: read
