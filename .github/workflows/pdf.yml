@@ -2,82 +2,69 @@ name: PDF Build and Deploy
 
 on:
   workflow_run:
-    workflows: ["Initial Build and Deploy"] # Matches the name of Workflow A
-    types:
-      - completed
+    workflows: ['Initial Build and Deploy']
+    types: [completed]
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
+  actions: read # Required to download artifacts from the trigger run
 
 jobs:
   pdf-all:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     strategy:
-      matrix: &company-matrix
-        company: [default, companyA] # Add more companies as needed
+      matrix:
+        company: [default, companyA]
     steps:
-      - name: Download all artifacts
+      - name: Download specific company artifact
         uses: actions/download-artifact@v4
         with:
-          name: github-pages
-          path: all-builds
+          name: out-${{ matrix.company }}
+          path: out-${{ matrix.company }}
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Generate PDF from deployed page
+
+      - name: Generate PDF
         uses: narthanaj/html-to-pdf-action@v1.0.0
         with:
-          source: ${{ needs.deploy-all.outputs.deploy_url }}${{ matrix.company == 'default' && '' || '/' }}${{ matrix.company == 'default' && '' || matrix.company }}/index.html#${{ secrets.ENCRYPTION_PASSWORD }}
-          output: all-builds/out-${{ matrix.company }}/${{ secrets.ENCRYPTION_PASSWORD }}.pdf
-          format: 'Letter'
-          margin: '10,10,10,10'
+          # Construct URL manually; needs.deploy-all is not available here
+          source: https://vbanderov.github.io/svelte-cv/${{ matrix.company == 'default' && '' || matrix.company }}${{ matrix.company == 'default' && '' || '/' }}index.html#${{ secrets.ENCRYPTION_PASSWORD }}
+          output: out-${{ matrix.company }}/${{ secrets.ENCRYPTION_PASSWORD }}.pdf
           print_background: 'true'
-      - name: Upload company artifact with PDF
+
+      - name: Upload merged company artifact
         uses: actions/upload-artifact@v4
         with:
-          name: out-${{ matrix.company }}-withpdf
-          path: all-builds/out-${{ matrix.company }}
+          name: final-out-${{ matrix.company }}
+          path: out-${{ matrix.company }}
 
   deploy-with-pdf:
     needs: pdf-all
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
     steps:
-      - name: Download all artifacts with PDFs
+      - name: Download all Final Artifacts
         uses: actions/download-artifact@v4
         with:
-          path: all-builds
-      - name: Combine all builds with PDFs
+          path: all-final
+          pattern: final-out-*
+          merge-multiple: false
+
+      - name: Combine and Deploy
         run: |
           mkdir -p build
-          for d in all-builds/out-*-withpdf; do
-            company=$(basename "$d" | sed 's/^out-//' | sed 's/-withpdf$//')
+          for d in all-final/final-out-*; do
+            company=$(basename "$d" | sed 's/^final-out-//')
             mkdir -p build/$company
             cp -r "$d"/* build/$company/
           done
-      - name: Upload artifact
+
+      - name: Upload to Pages
         uses: actions/upload-pages-artifact@v4
         with:
           path: 'build/'
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4.0.5
-  delete-pdf-artifacts:
-    needs: deploy-with-pdf
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: *company-matrix
-    steps:
-      - name: Delete PDF artifact
-        uses: geekyeggo/delete-artifact@v5.1.0
-        with:
-          name: out-${{ matrix.company }}-withpdf
+
+      - name: Deploy
+        uses: actions/deploy-pages@v4
