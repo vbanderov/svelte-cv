@@ -1,8 +1,6 @@
 <script>
 	import Section from '$lib/components/section.svelte';
 	import config, { resolveValue } from '$lib/config';
-	import { page } from '$app/stores';
-	import { get } from 'svelte/store';
 </script>
 
 <Section title="Expertise">

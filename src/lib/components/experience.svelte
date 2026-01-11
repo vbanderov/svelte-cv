@@ -1,7 +1,5 @@
 <script lang="ts">
 	import config, { resolveValue } from '$lib/config';
-	import { page } from '$app/stores';
-	import { get } from 'svelte/store';
 	import Section from '$lib/components/section.svelte';
 	import { formatDate, formatPositionPeriod, getDuration } from '$lib/helpers';
 </script>

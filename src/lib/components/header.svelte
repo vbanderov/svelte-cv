@@ -7,8 +7,6 @@
 	import LocationIcon from '$lib/assets/location.svg';
 	import LinkedInIcon from '$lib/assets/linkedin.svg';
 	import config, { resolveValue } from '$lib/config';
-	import { page } from '$app/stores';
-	import { get } from 'svelte/store';
 	import { decryptContactInfo } from '$lib/helpers';
 
 	let phone = '';
