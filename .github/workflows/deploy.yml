@@ -19,13 +19,16 @@ concurrency:
   group: 'pages'
   cancel-in-progress: true
 
+# Add more companies as needed
+x-company-matrix: &company-matrix
+  company: [default, companyA, companyB]
 
 jobs:
   build-all:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        company: [default, companyA, companyB] # Add more companies as needed
+        <<: *company-matrix
     permissions:
       contents: read
     steps:
@@ -59,6 +62,8 @@ jobs:
     permissions:
       pages: write
       id-token: write
+    outputs:
+      deploy_url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
@@ -79,15 +84,24 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
-      - name: Save deployed URL
-        run: echo "DEPLOY_URL=${{ steps.deployment.outputs.page_url }}" >> $GITHUB_ENV
+  delete-build-artifacts:
+    needs: deploy-all
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        <<: *company-matrix
+    steps:
+      - name: Delete build artifact
+        uses: geekyeggo/delete-artifact@v5.1.0
+        with:
+          name: out-${{ matrix.company }}
 
   pdf-all:
     needs: deploy-all
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        company: [default, companyA, companyB] # Add more companies as needed
+        <<: *company-matrix
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
@@ -96,7 +110,7 @@ jobs:
       - name: Generate PDF from deployed page
         uses: narthanaj/html-to-pdf-action@v1.0.0
         with:
-          source: ${{ env.DEPLOY_URL }}${{ matrix.company == 'default' && '' || '/' }}${{ matrix.company == 'default' && '' || matrix.company }}/index.html#${{ secrets.ENCRYPTION_PASSWORD }}
+          source: ${{ needs.deploy-all.outputs.deploy_url }}${{ matrix.company == 'default' && '' || '/' }}${{ matrix.company == 'default' && '' || matrix.company }}/index.html#${{ secrets.ENCRYPTION_PASSWORD }}
           output: all-builds/out-${{ matrix.company }}/${{ secrets.ENCRYPTION_PASSWORD }}.pdf
           format: 'Letter'
           margin: '10,10,10,10'
@@ -104,7 +118,7 @@ jobs:
       - name: Upload company artifact with PDF
         uses: actions/upload-artifact@v4
         with:
-          name: out-${{ matrix.company }}-pdf
+          name: out-${{ matrix.company }}-withpdf
           path: all-builds/out-${{ matrix.company }}
 
   deploy-with-pdf:
@@ -121,8 +135,8 @@ jobs:
       - name: Combine all builds with PDFs
         run: |
           mkdir -p build
-          for d in all-builds/out-*-pdf; do
-            company=$(basename "$d" | sed 's/^out-//' | sed 's/-pdf$//')
+          for d in all-builds/out-*-withpdf; do
+            company=$(basename "$d" | sed 's/^out-//' | sed 's/-withpdf$//')
             mkdir -p build/$company
             cp -r "$d"/* build/$company/
           done
@@ -132,3 +146,14 @@ jobs:
           path: 'build/'
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4.0.5
+  delete-pdf-artifacts:
+    needs: deploy-with-pdf
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        <<: *company-matrix
+    steps:
+      - name: Delete PDF artifact
+        uses: geekyeggo/delete-artifact@v5.1.0
+        with:
+          name: out-${{ matrix.company }}-withpdf
