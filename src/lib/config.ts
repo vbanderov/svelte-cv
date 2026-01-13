@@ -197,4 +197,6 @@ const expertise: CompanyOverride<string[]> = {
 	// Example: companyA: [ ... ]
 };
 
-export default { name, tagLine, experience, expertise };
+const certifications = ['Cisco CCNA (exp)', 'AWS SysOps Administrator (exp)'];
+
+export default { name, tagLine, experience, expertise, certifications };

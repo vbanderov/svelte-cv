@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Section from '$lib/components/section.svelte';
+	import config from '$lib/config';
 </script>
 
 <Section title="Education">
@@ -17,5 +18,11 @@
 				>
 			</li>
 		</ul>
+	</div>
+	<div class="mt-4 ml-4">
+		<span class="font-bold">Certifications:</span>
+		{#each config.certifications as cert}
+			{cert};&nbsp;
+		{/each}
 	</div>
 </Section>
