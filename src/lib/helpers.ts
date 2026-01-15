@@ -65,5 +65,5 @@ export function getDuration(job: Job): string {
 	const yearsString = years > 0 ? `${years} year${years > 1 ? 's' : ''}` : '';
 	const monthsString = months > 0 ? `${months} month${months > 1 ? 's' : ''}` : '';
 
-	return `${yearsString}, ${monthsString}`;
+	return [yearsString, monthsString].filter((s) => s != '').join(', ');
 }
