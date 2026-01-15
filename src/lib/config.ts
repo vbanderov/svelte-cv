@@ -22,7 +22,8 @@ const name = 'Vladimir Banderov';
 const tagLine: CompanyOverride<string> = {
 	default:
 		'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams and scalable tech solutions driving business value in fintech and remote tech environments.',
-	companyA: 'Custom tagline for CompanyA'
+	clario:
+		'Engineering Leader with 12+ years in full-stack development, specializing in building high-performing teams and scaling technology solutions that drive measurable business value in fintech, healthcare research, and beyond.'
 };
 
 // Helper to support per-company overrides for arrays and strings
@@ -57,7 +58,13 @@ const experience: Job[] = [
 						'Designed and implemented a CodeSignal pre-screening assessment for hiring, reducing first-level interviews by 60% and enabling efficient recruitment of top talent; adopted by multiple teams department-wide.',
 						'Mentored team members through 1-on-1 coaching and individual development plans, accelerating onboarding and productivity.'
 					],
-					companyA: ['Custom bullet point for company A']
+					clario: [
+						'Led a squad of 4 developers, 2 QAs, BA, and PO in delivering features for a large-scale wealth management application; managed 3 FTEs and 2 contractors, fostering collaboration across a journey of 6 squads in compliant financial environments.',
+						'Designed and implemented a CodeSignal pre-screening assessment for hiring, reducing first-level interviews by 60% and enabling efficient recruitment of top talent, including 3 FTEs; adopted by multiple teams department-wide.',
+						'Championed NestJS with TypeScript for a new Document Workflow microservice backend, replacing vanilla Node.js/Express; achieved 80% code reuse in applications like KYC, NAAF, and AOIF, saving advisors ~80% time per process and generating ~$9M annual cost savings in secure processing.',
+						'Launched GenAI Champions initiative to drive GitHub Copilot adoption, increasing active users by 150% in 6 months; reduced unit test development time from 25% to 10-12%, boosting overall developer productivity and supporting enterprise AI goals.',
+						'Optimized development processes, including NX monorepo setup for backend reusability, pipeline migrations to Helios/OCP4 using Kubernetes expertise, and test-coverage enforcement, resulting in improved efficiency, reduced defects, and lower costs through containerized infrastructure.'
+					]
 				},
 				technologies: {
 					default: [
@@ -135,11 +142,18 @@ const experience: Job[] = [
 				title: 'Lead Web Developer',
 				startDate: [2017, 4],
 				endDate: [2021, 2],
-				bulletPoints: [
-					'Led design and development of Progressive Web Apps for HEOR data capture, visualization, and analysis using MEAN stack, delivering end-to-end solutions.',
-					'Supervised and mentored a team of 3 developers, improving code quality and project delivery timelines.',
-					'Configured CI/CD in GitLab and set up cloud/on-premise servers (AWS Lambda, CloudFront, DynamoDB), ensuring reliable deployments and backups.'
-				],
+				bulletPoints: {
+					default: [
+						'Led design and development of Progressive Web Apps for HEOR data capture, visualization, and analysis using MEAN stack, delivering end-to-end solutions.',
+						'Supervised and mentored a team of 3 developers, improving code quality and project delivery timelines.',
+						'Configured CI/CD in GitLab and set up cloud/on-premise servers (AWS Lambda, CloudFront, DynamoDB), ensuring reliable deployments and backups.'
+					],
+					clario: [
+						'Led design and development of Progressive Web Apps for HEOR data capture, visualization, and analysis using MEAN stack, delivering end-to-end solutions that optimized clinical trial outcomes research for health economists.',
+						'Supervised and mentored a team of 3 developers, improving code quality and project delivery timelines in regulated healthcare data environments.',
+						'Configured CI/CD in GitLab and set up cloud/on-premise servers (AWS Lambda, CloudFront, DynamoDB), ensuring compliant deployments and backups for sensitive research data.'
+					]
+				},
 				technologies: [
 					'TypeScript',
 					'JavaScript',
@@ -193,8 +207,12 @@ const expertise: CompanyOverride<string[]> = {
 		'Leading cross-functional tech teams to deliver high-impact features, mentoring engineers, and optimizing hiring processes to foster collaboration and recruit top talent efficiently.',
 		'Driving strategic tech adoptions, such as AI tools boosting user adoption and reducing routine task time, alongside backend architecture improvements enabling code reuse and cost savings.',
 		'Building and optimizing scalable infrastructure in cloud and on-premise environments for system architecture, optimization, and addressing complex workflow challenges.'
+	],
+	clario: [
+		'Leading cross-functional tech teams to deliver high-impact features, mentoring engineers, and optimizing hiring processes to foster collaboration and recruit top talent efficiently in regulated environments.',
+		'Driving strategic tech adoptions, such as AI tools boosting user adoption and reducing routine task time, alongside backend architecture improvements enabling code reuse and cost savings in data-intensive workflows.',
+		'Building and optimizing scalable infrastructure in cloud and on-premise environments for system architecture, optimization, and addressing complex workflow challenges in clinical and financial research.'
 	]
-	// Example: companyA: [ ... ]
 };
 
 const certifications = ['Cisco CCNA (exp)', 'AWS SysOps Administrator (exp)'];
