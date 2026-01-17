@@ -159,6 +159,12 @@ const experience: Job[] = [
 						'Supervised and mentored a team of 3 developers, improving code quality and project delivery timelines.',
 						'Configured CI/CD in GitLab and set up cloud/on-premise servers (AWS Lambda, CloudFront, DynamoDB), ensuring reliable deployments and backups.'
 					],
+					onepassword: [
+						'Led design and development of Progressive Web Apps for data capture, visualization, and analysis using MEAN stack, delivering end-to-end solutions that optimized user workflows.',
+						'Supervised and mentored a team of 3 developers, improving code quality and project delivery timelines in secure environments.',
+						'Configured CI/CD in GitLab and set up cloud/on-premise servers (AWS Lambda, CloudFront, DynamoDB), ensuring reliable deployments for web applications.',
+						'Led development of dynamic content websites using Strapi headless CMS for HEOR companies, enabling efficient data capture, visualization, and analysis in MEAN stack PWAs.'
+					],
 					mercury: [
 						'Led design and development of Progressive Web Apps for HEOR data capture, visualization, and analysis using MEAN stack, delivering end-to-end solutions that optimized research workflows.',
 						'Supervised and mentored a team of 3 developers, improving code quality and project delivery timelines in regulated environments.',
