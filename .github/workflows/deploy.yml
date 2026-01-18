@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        company: [default, onepassword, mercury, clio] # Add more companies as needed
+        company: [default, onepassword, mercury, clio, cherry] # Add more companies as needed
     permissions:
       contents: read
     steps:

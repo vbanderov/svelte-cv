@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: &company-matrix
-        company: [default, onepassword, mercury, clio]
+        company: [default, onepassword, mercury, clio, cherry]
     steps:
       - name: Download company artifact
         uses: actions/download-artifact@v4
