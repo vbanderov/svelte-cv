@@ -40,7 +40,9 @@ const tagLine: CompanyOverride<string> = {
 		'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams and scalable banking solutions that drive business value in fintech and remote environments.',
 	clio: 'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams, scalable SaaS solutions, and career development that drive business value in fintech and regulated environments.',
 	cherry:
-		'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams, AI optimizations, and scalable healthcare solutions that drive business value in fintech and regulated environments.'
+		'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams, AI optimizations, and scalable healthcare solutions that drive business value in fintech and regulated environments.',
+	proof:
+		'Engineering Leader with 12+ years in full-stack development, specializing in scaling high-performing teams and career growth that drive business value in fintech and startup environments.'
 };
 
 const expertise: CompanyOverride<string[]> = {
@@ -68,6 +70,11 @@ const expertise: CompanyOverride<string[]> = {
 		'Leading cross-functional tech teams to deliver high-impact features, mentoring engineers, and optimizing hiring processes to foster collaboration and scale teams efficiently.',
 		'Driving strategic tech adoptions, such as AI tools boosting user adoption and reducing task time, alongside backend architecture decisions enabling code reuse and efficiency in healthcare innovations.',
 		'Building and optimizing scalable infrastructure in cloud environments for system architecture, optimization, and addressing complex challenges through CI/CD pipelines'
+	],
+	proof: [
+		'Leading cross-functional tech teams to scale and deliver high-impact features, mentoring engineers through career growth, and optimizing hiring processes to foster collaboration and recruit top talent efficiently.',
+		'Driving strategic tech adoptions, such as AI tools boosting user adoption and reducing task time, alongside backend improvements enabling code reuse and efficiency in event-driven architectures.',
+		'Building and optimizing scalable infrastructure in cloud environments for system architecture, code reviews, and addressing complex challenges in startup growth.'
 	]
 };
 
@@ -121,6 +128,14 @@ const experience: Job[] = [
 						'Optimized development processes, including NX monorepo setup for backend reusability, pipeline migrations to Github Actions/OCP4 using Kubernetes expertise, and test-coverage enforcement, resulting in improved efficiency, reduced defects, and lower costs through containerized infrastructure.',
 						'Designed and implemented a CodeSignal pre-screening assessment for hiring, reducing first-level interviews by 60% and enabling efficient recruitment of top talent; adopted by multiple teams department-wide.',
 						'Mentored team members through 1-on-1 coaching and individual development plans, accelerating onboarding and productivity.'
+					],
+					proof: [
+						'Led a squad of 4 developers, 2 QAs, BA, and PO in delivering features for a large-scale wealth management application; managed 3 FTEs and 2 contractors, fostering collaboration across a journey of 6 squads through team scaling and mentoring.',
+						'Launched GenAI Champions initiative to drive GitHub Copilot adoption, increasing active users by 150% in 6 months; reduced unit test development time from 25% to 10-12%, boosting developer productivity and supporting AI goals.',
+						'Championed NestJS with TypeScript for a new Document Workflow microservice backend, replacing vanilla Node.js/Express; achieved 80% code reuse in applications like KYC, NAAF, and AOIF, saving advisors ~80% time per process and generating ~$9M annual cost savings in compliant systems.',
+						'Optimized development processes, including NX monorepo setup for backend reusability, pipeline migrations to Github Actions/OCP4 using Kubernetes expertise, and test-coverage scripts, resulting in improved efficiency, reduced defects, and event-driven integrations.',
+						'Designed and implemented a CodeSignal pre-screening assessment for hiring, reducing first-level interviews by 60% and enabling efficient recruitment of top talent; adopted by multiple teams department-wide.',
+						'Mentored team members through 1-on-1 coaching and individual development plans, accelerating onboarding and career growth in collaborative environments.'
 					]
 				},
 				technologies: {
@@ -130,7 +145,8 @@ const experience: Job[] = [
 						'Team Leadership',
 						'TypeScript',
 						'Angular',
-						'NestJS'
+						'NestJS',
+						'Kafka',
 					]
 					// Example: companyA: [ ... ]
 				}
