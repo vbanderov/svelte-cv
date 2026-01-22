@@ -1,8 +1,8 @@
 
         export const testString = 'test-string';
-        export const testStringEncrypted = 'Jqjs6FqeXbF5/Ajvl91rYg==';
-        export const phoneEncrypted = 'L+ctkUVyiYsk26kqGXge1A==';
-        export const emailEncrypted = 'L9QYlV0r7mJ5LG6g2oFnoJ92K6iQbNnLarMjrjIkqiQ=';
-        export const salt = 'f0f956ae63f632c364426ef7e00e120c';
-        export const iv = '38bae63805a9b2ca039fc2b245b78878';
+        export const testStringEncrypted = 'Fkd/pDxfrNuz0k+5IGWAdg==';
+        export const phoneEncrypted = 'V29hd4pJdtqy9PYfK9y3Fw==';
+        export const emailEncrypted = 'xYwtwjm2zN6qfQlNIhBO0wiE06zKjrrg3zFwGJeGVFiMjrP3HV35PLEKmuvL0MMv';
+        export const salt = '590be74c983b2695065bfeb929172738';
+        export const iv = 'aa12449db0eab6d67aa36696d18913bf';
     
