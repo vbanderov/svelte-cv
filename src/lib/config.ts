@@ -274,6 +274,30 @@ const experience: Job[] = [
 	}
 ];
 
-const certifications = ['Cisco CCNA (exp)', 'AWS SysOps Administrator (exp)'];
+const certifications = ['Cisco CCNA (2012-2015)', 'AWS SysOps Administrator (2018-2020)'];
 
-export default { name, tagLine, experience, expertise, certifications };
+// ATS-friendly skills list - comma-separated keywords for better parsing
+const skills = [
+	'Engineering Management',
+	'Team Leadership',
+	'TypeScript',
+	'Node.js',
+	'NestJS',
+	'Angular',
+	'GenAI',
+	'React',
+	'React Native',
+	'Kubernetes',
+	'Docker',
+	'GitHub Actions',
+	'AWS (Lambda, S3, DynamoDB, SQS, CloudFront)',
+	'Kafka',
+	'Terraform',
+	'SQL',
+	'Snowflake',
+	'MongoDB',
+	'CI/CD',
+	'Microservices',
+];
+
+export default { name, tagLine, experience, expertise, certifications, skills };

@@ -1,3 +1,61 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ATS-friendly print styles */
+@media print {
+	/* Use standard fonts for ATS parsing */
+	body {
+		font-family: Arial, Calibri, 'Times New Roman', sans-serif !important;
+		font-size: 11pt;
+		line-height: 1.4;
+		color: #000 !important;
+		background: #fff !important;
+	}
+
+	/* Remove all decorative elements */
+	.print\:hidden,
+	.no-print {
+		display: none !important;
+	}
+
+	/* Ensure clean layout without columns or boxes */
+	* {
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+
+	/* Make links visible as plain text for ATS */
+	a {
+		color: #000 !important;
+		text-decoration: none !important;
+	}
+
+	/* Standard bullet points */
+	ul {
+		list-style-type: disc !important;
+		margin-left: 1.5em !important;
+		padding-left: 0 !important;
+	}
+
+	li {
+		margin-bottom: 0.25em;
+	}
+
+	/* Page break controls */
+	.break-after-avoid {
+		break-after: avoid;
+		page-break-after: avoid;
+	}
+
+	.break-inside-avoid {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+
+	/* Ensure proper margins for PDF generation */
+	@page {
+		margin: 0.5in;
+		size: letter;
+	}
+}

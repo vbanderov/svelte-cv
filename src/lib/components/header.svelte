@@ -29,8 +29,20 @@
 	});
 </script>
 
+<!-- ATS-friendly print header: plain text, single line contact info -->
+<div class="hidden print:block pb-3">
+	<div class="text-center text-2xl font-bold">{config.name}</div>
+	<div class="text-center text-sm py-2 border-b border-gray-300">
+		Calgary, AB
+		{#if phone} | {phone}{/if}
+		{#if email} | <a href="mailto:{email}">{email}</a>{/if}
+		| <a href="https://www.linkedin.com/in/vladimir-banderov/">linkedin.com/in/vladimir-banderov</a>
+	</div>
+</div>
+
+<!-- Browser view header: visual layout with icons -->
 <div
-	class="flex w-full flex-col items-center justify-center space-x-4 space-y-4 dark:text-white md:flex-row"
+	class="flex w-full flex-col items-center justify-center space-x-4 space-y-4 dark:text-white md:flex-row print:hidden"
 >
 	<div class="w-32">
 		<img src={avatar} class="rounded-full" alt="avatar" />
