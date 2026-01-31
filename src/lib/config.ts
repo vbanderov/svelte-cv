@@ -33,7 +33,7 @@ const name = 'Vladimir Banderov';
 // Supports per-company overrides: string or { default: string, [company: string]: string }
 const tagLine: CompanyOverride<string> = {
 	default:
-		'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams and scalable tech solutions driving business value in fintech and remote tech environments.',
+		'Staff Engineer with **12+ years** delivering scalable tech solutions that generate multimillion-dollar business value in fintech, including **$9M in annual cost savings** through architecture optimizations at RBC.',
 	mercury:
 		'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams and scalable banking solutions that drive business value in fintech and remote environments.',
 	clio: 'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams, scalable SaaS solutions, and career development that drive business value in fintech and regulated environments.',
@@ -45,9 +45,10 @@ const tagLine: CompanyOverride<string> = {
 
 const expertise: CompanyOverride<string[]> = {
 	default: [
-		'Leading cross-functional tech teams to deliver high-impact features, mentoring engineers, and optimizing hiring processes to foster collaboration and recruit top talent efficiently.',
-		'Driving strategic tech adoptions, such as AI tools boosting user adoption and reducing routine task time, alongside backend architecture improvements enabling code reuse and cost savings.',
-		'Building and optimizing scalable infrastructure in cloud and on-premise environments for system architecture, optimization, and addressing complex workflow challenges.'
+		'Boosted AI adoption via GenAI initiative, increasing active users by **150%** and halving unit test development time (from 25% to 12% of dev cycles), accelerating productivity across enterprise teams.',
+		'Delivered high-impact features for wealth management apps, scaling systems to support **80% code reuse** and reducing advisor process time by ~**80%** in KYC/NAAF workflows.',
+		'Optimized hiring and onboarding, cutting first-level interviews by **60%** with custom assessments and mentoring plans that ramped up team efficiency in remote, cross-functional environments.',
+		'Architected cloud/on-premise infrastructure for performance and cost, enabling seamless CI/CD pipelines and microservices that minimized defects and supported rapid growth.'
 	],
 	mercury: [
 		'Leading cross-functional tech teams to deliver high-impact features, mentoring engineers, and optimizing hiring processes to foster collaboration and recruit top talent efficiently in fintech settings.',
@@ -84,12 +85,11 @@ const experience: Job[] = [
 				startDate: [2023, 2],
 				bulletPoints: {
 					default: [
-						'Led a squad of 4 developers, 2 QAs, BA, and PO in delivering features for a large-scale wealth management application; managed 3 FTEs and 2 contractors, fostering collaboration across a journey of 6 squads.',
-						"Launched GenAI Champions initiative to drive GitHub Copilot adoption, increasing active users by 150% in 6 months; reduced unit test development time from 25% to 10-12%, boosting overall developer productivity and supporting RBC's enterprise AI goals.",
-						'Championed NestJS with TypeScript for a new Document Workflow microservice backend, replacing vanilla Node.js/Express; achieved 80% code reuse in applications like KYC (Know Your Client), NAAF (New Account Application Forms), and AOIF, saving advisors ~80% time per process and generating ~$9M annual cost savings.',
-						'Optimized development processes, including NX monorepo setup for backend reusability, pipeline migrations to Github Actions/OCP4 using Kubernetes expertise, and test-coverage enforcement, resulting in improved efficiency, reduced defects, and lower costs through containerized infrastructure.',
-						'Designed and implemented a CodeSignal pre-screening assessment for hiring, reducing first-level interviews by 60% and enabling efficient recruitment of top talent; adopted by multiple teams department-wide.',
-						'Mentored team members through 1-on-1 coaching and individual development plans, accelerating onboarding and productivity.'
+						'Generated **$9M in annual cost savings** by rearchitecting document workflows with NestJS/TypeScript microservices, replacing Node.js/Express and achieving **80% code reuse** across KYC, NAAF, and AOIF apps—saving advisors ~**80% time** per process.',
+						"Increased active users by **150%** and reduced unit test development time from 25% to 12% by launching GenAI Champions initiative for GitHub Copilot adoption, supporting RBC's enterprise AI goals and boosting developer productivity.",
+						'Reduced first-level interviews by **60%** and enabled department-wide talent recruitment by designing CodeSignal pre-screening assessments, streamlining hiring for top engineers.',
+						'Improved efficiency and cut defects/lowered costs by optimizing processes like NX monorepo setup, GitHub Actions/OCP4 migrations with Kubernetes, and test-coverage enforcement in containerized infrastructure.',
+						'Accelerated onboarding and productivity for cross-functional squads (4 devs, 2 QAs, BA, PO) through 1-on-1 mentoring and development plans, fostering collaboration across 6 squads in wealth management apps.'
 					],
 					mercury: [
 						'Led a squad of 4 developers, 2 QAs, BA, and PO in delivering features for a large-scale wealth management application; managed 3 FTEs and 2 contractors, fostering collaboration across a journey of 6 squads in compliant banking environments.',
@@ -125,13 +125,14 @@ const experience: Job[] = [
 				},
 				technologies: {
 					default: [
-						'Engineering Management',
+						'Scalable Architecture',
 						'AI Adoption',
-						'Team Leadership',
 						'TypeScript',
 						'Angular',
 						'NestJS',
 						'Kafka',
+						'Team Leadership',
+						'Engineering Management'
 					]
 					// Example: companyA: [ ... ]
 				}
@@ -146,13 +147,14 @@ const experience: Job[] = [
 		},
 		positions: [
 			{
-				title: 'Senior Full Stack Engineer - R&D',
-				startDate: [2022, 9],
+				title: 'Senior Full Stack Engineer - Developer Platform, R&D',
+				startDate: [2021, 3],
 				endDate: [2023, 1],
 				bulletPoints: [
-					'Developed React Native app from scratch, integrating with existing microservices to enhance mobile user experience.',
-					'Expanded microservices in TypeScript/Node.js/Go to support app integration into Skillz infrastructure, improving scalability.',
-					'Configured CI/CD pipelines in GitHub, reducing deployment times and enabling faster iterations.'
+					'Enhanced mobile user experience and scalability by developing a React Native app from scratch and expanding TypeScript/Node.js/Go microservices for integration into Skillz infrastructure.',
+					'Reduced deployment times and enabled faster iterations by configuring CI/CD pipelines in GitHub, supporting rapid platform growth.',
+					'Improved usability for external developers and contributed to player engagement growth by leading the Developer Console development and scaling NodeJS/Ruby on Rails microservices.',
+					'Streamlined releases and reduced errors through GitHub CI/CD implementations, while mentoring junior/mid-level engineers for knowledge transfer and efficiency.'
 				],
 				technologies: [
 					'TypeScript',
@@ -161,36 +163,6 @@ const experience: Job[] = [
 					'Go',
 					'Kubernetes',
 					'AWS (DynamoDB, SQS)',
-					'Terraform',
-					'MySQL',
-					'Snowflake'
-				]
-			},
-			{
-				title: 'Senior Full Stack Engineer - Developer Platform',
-				startDate: [2021, 3],
-				endDate: [2022, 8],
-				bulletPoints: {
-					default: [
-						'Led development of the Developer Console, a key tool for game setup on the Skillz platform, enhancing usability for external developers.',
-						'Built and scaled NodeJS and Ruby on Rails microservices to support game developers and player engagement, contributing to platform growth.',
-						'Mentored junior- and mid-level engineers, fostering knowledge transfer and team efficiency.',
-						'Implemented CI/CD configurations in GitHub, streamlining releases and reducing errors.'
-					],
-					clio: [
-						'Led development of the Developer Console, a key tool for game setup on the Skillz SaaS platform, enhancing usability for external developers through feature delivery and code reviews.',
-						'Built and scaled NodeJS and Ruby on Rails microservices to support game developers and player engagement, contributing to platform growth.',
-						'Configured CI/CD pipelines in GitHub, streamlining releases and enabling faster iterations for SaaS products.',
-						'Mentored junior- and mid-level engineers, fostering knowledge transfer and career development in dynamic teams.'
-					]
-				},
-				technologies: [
-					'TypeScript',
-					'React',
-					'Node.js',
-					'Ruby on Rails',
-					'Kubernetes',
-					'AWS (DynamoDB, SQS, S3)',
 					'Terraform',
 					'MySQL',
 					'Snowflake'
@@ -278,7 +250,9 @@ const certifications = ['Cisco CCNA (2012-2015)', 'AWS SysOps Administrator (201
 
 // ATS-friendly skills list - comma-separated keywords for better parsing
 const skills = [
-	'Engineering Management',
+	'Scalable Microservices',
+	'AI Integration',
+	'Fintech Compliance (KYC/NAAF)',
 	'Team Leadership',
 	'TypeScript',
 	'Node.js',
@@ -297,7 +271,6 @@ const skills = [
 	'Snowflake',
 	'MongoDB',
 	'CI/CD',
-	'Microservices',
 ];
 
 export default { name, tagLine, experience, expertise, certifications, skills };

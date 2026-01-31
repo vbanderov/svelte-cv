@@ -52,7 +52,7 @@
 	>
 		<div class="whitespace-nowrap text-3xl font-semibold tracking-wider">{config.name}</div>
 		<div class="text-base">
-			{resolveValue(config.tagLine)}
+			{@html resolveValue(config.tagLine).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}
 		</div>
 	</div>
 
