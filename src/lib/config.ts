@@ -85,7 +85,7 @@ const experience: Job[] = [
 				startDate: [2023, 2],
 				bulletPoints: {
 					default: [
-						'Generated **$9M in annual cost savings** by rearchitecting document workflows with NestJS/TypeScript microservices, replacing Node.js/Express and achieving **80% code reuse** across KYC, NAAF, and AOIF apps—saving advisors ~**80% time** per process.',
+						'Generated **$9M in annual cost savings** by rearchitecting document workflows with NestJS/TypeScript microservices, replacing Node.js/Express and achieving **80% code reuse** across KYC, NAAF, and AOIF apps-saving advisors ~**80% time** per process.',
 						"Increased active users by **150%** and reduced unit test development time from 25% to 12% by launching GenAI Champions initiative for GitHub Copilot adoption, supporting RBC's enterprise AI goals and boosting developer productivity.",
 						'Reduced first-level interviews by **60%** and enabled department-wide talent recruitment by designing CodeSignal pre-screening assessments, streamlining hiring for top engineers.',
 						'Improved efficiency and cut defects/lowered costs by optimizing processes like NX monorepo setup, GitHub Actions/OCP4 migrations with Kubernetes, and test-coverage enforcement in containerized infrastructure.',
