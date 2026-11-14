@@ -9,7 +9,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  actions: read 
+  actions: read
 
 jobs:
   pdf-all:
@@ -17,7 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: &company-matrix
-        company: [default, mercury, clio, cherry, proof]
+        # Keep in sync with deploy.yml. Extra slugs publish /svelte-cv/<slug>.
+        company:
+          - default
+          # - example
     steps:
       - name: Download company artifact
         uses: actions/download-artifact@v4

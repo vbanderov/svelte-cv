@@ -55,7 +55,8 @@ export function getDuration(job: Job): string {
 	const { startDate } = job.positions.slice(-1)[0];
 	const endDate = job.positions[0].endDate;
 
-	const endDateOrNow = endDate || [new Date().getFullYear(), new Date().getMonth() + 1];
+	// Stored months are 0-indexed. getMonth() matches that; the +1 below includes the end month once.
+	const endDateOrNow = endDate || [new Date().getFullYear(), new Date().getMonth()];
 	const durationMs = Date.UTC(endDateOrNow[0], endDateOrNow[1] + 1) - Date.UTC(...startDate);
 	const duration = new Date(durationMs);
 

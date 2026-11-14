@@ -24,7 +24,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        company: [default, mercury, clio, cherry, proof] # Add more companies as needed
+        # `default` is the root CV. Add a slug to publish /svelte-cv/<slug>
+        # with VITE_BUILD_COMPANY set to that slug. No extra companies are published now.
+        company:
+          - default
+          # - example
     permissions:
       contents: read
     steps:
@@ -71,7 +75,7 @@ jobs:
           for d in all-builds/out-*; do
             # Extract company name from folder name
             company=$(basename "$d" | sed 's/^out-//')
-            
+
             if [ "$company" = "default" ]; then
               # Copy files directly to root of build folder
               cp -r "$d"/* build/
@@ -88,4 +92,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
-  
