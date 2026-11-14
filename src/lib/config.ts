@@ -1,9 +1,11 @@
+export type CompanyOverride<T> = T | { default: T; [company: string]: T };
+
 export interface Position {
 	title: string;
 	startDate: [number, number];
 	endDate?: [number, number];
-	bulletPoints: string[];
-	technologies: string[];
+	bulletPoints: CompanyOverride<string[]>;
+	technologies: CompanyOverride<string[]>;
 }
 
 export interface Job {
@@ -15,11 +17,24 @@ export interface Job {
 	positions: Position[];
 }
 
+// Helper to support per-company overrides for arrays and strings
+// If VITE_BUILD_COMPANY is set at build time, use it as the default company context
+export const buildCompany = import.meta.env.VITE_BUILD_COMPANY as string | undefined;
+
+export function resolveValue<T>(value: T | { default: T; [company: string]: T }): T {
+	if (typeof value === 'object' && value !== null && 'default' in value) {
+		if (buildCompany && value[buildCompany]) return value[buildCompany];
+		return value.default;
+	}
+	return value as T;
+}
+
 const name = 'Vladimir Banderov';
-const tagLine =
+// Supports per-company overrides: string or { default: string, [company: string]: string }
+const tagLine: CompanyOverride<string> =
 	'Staff Engineer, Developer Experience at Helcim. 16+ years in tech, focused on helping engineering teams build, review and ship faster.';
 
-const expertise: string[] = [
+const expertise: CompanyOverride<string[]> = [
 	'Boosted AI adoption via GenAI initiative, increasing active users by **150%** and halving unit test development time (from 25% to 12% of dev cycles), accelerating productivity across enterprise teams.',
 	'Optimized hiring and onboarding, cutting first-level interviews by **60%** with custom assessments and mentoring plans that ramped up team efficiency in remote, cross-functional environments.',
 	'Architected cloud/on-premise infrastructure for performance and cost, enabling seamless CI/CD pipelines and microservices that minimized defects and supported rapid growth.',
