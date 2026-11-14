@@ -6,7 +6,7 @@
 	import MailIcon from '$lib/assets/mail.svg';
 	import LocationIcon from '$lib/assets/location.svg';
 	import LinkedInIcon from '$lib/assets/linkedin.svg';
-	import config, { resolveValue } from '$lib/config';
+	import config from '$lib/config';
 	import { decryptContactInfo } from '$lib/helpers';
 
 	let phone = '';
@@ -52,7 +52,7 @@
 	>
 		<div class="whitespace-nowrap text-3xl font-semibold tracking-wider">{config.name}</div>
 		<div class="text-base">
-			{@html resolveValue(config.tagLine).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}
+			{@html config.tagLine.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}
 		</div>
 	</div>
 

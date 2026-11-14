@@ -6,7 +6,6 @@
 	import { AES } from 'crypto-js';
 	import Utf8 from 'crypto-js/enc-utf8';
 	import CryptoJS from 'crypto-js';
-	import { buildCompany } from '$lib/config';
 
 	let showDownloadButton = false;
 	let filename = '';
@@ -25,9 +24,7 @@
 
 		showDownloadButton = true;
 
-		const companySuffix = buildCompany ? `${buildCompany}/` : '';
-
-		filename = `/svelte-cv/${companySuffix}${s}.pdf`;
+		filename = `/svelte-cv/${s}.pdf`;
 	});
 </script>
 

@@ -20,11 +20,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-all:
+  build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        company: [default, mercury, clio, cherry, proof] # Add more companies as needed
     permissions:
       contents: read
     steps:
@@ -35,25 +32,16 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm ci
-      - name: Build for company
-        run: |
-          if [ "${{ matrix.company }}" = "default" ]; then
-            BASE_URI=/svelte-cv npm run build
-          else
-            BASE_URI=/svelte-cv/${{ matrix.company }} VITE_BUILD_COMPANY=${{ matrix.company }} npm run build
-          fi
-      - name: Move build to company folder
-        run: |
-          mkdir -p out/${{ matrix.company }}
-          mv build/* out/${{ matrix.company }}/
-      - name: Upload company artifact
+      - name: Build
+        run: BASE_URI=/svelte-cv npm run build
+      - name: Upload site artifact
         uses: actions/upload-artifact@v4
         with:
-          name: out-${{ matrix.company }}
-          path: out/${{ matrix.company }}
+          name: site
+          path: build
 
-  deploy-all:
-    needs: build-all
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -61,26 +49,11 @@ jobs:
     outputs:
       deploy_url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Download all artifacts
+      - name: Download site artifact
         uses: actions/download-artifact@v4
         with:
-          path: all-builds
-      - name: Combine all builds
-        run: |
-          mkdir -p build
-          for d in all-builds/out-*; do
-            # Extract company name from folder name
-            company=$(basename "$d" | sed 's/^out-//')
-            
-            if [ "$company" = "default" ]; then
-              # Copy files directly to root of build folder
-              cp -r "$d"/* build/
-            else
-              # Create subdirectory for other companies
-              mkdir -p build/$company
-              cp -r "$d"/* build/$company/
-            fi
-          done
+          name: site
+          path: build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
@@ -88,4 +61,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
-  

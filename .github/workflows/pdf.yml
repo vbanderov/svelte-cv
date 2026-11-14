@@ -9,81 +9,41 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  actions: read 
+  actions: read
 
 jobs:
-  pdf-all:
+  pdf:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix: &company-matrix
-        company: [default, mercury, clio, cherry, proof]
     steps:
-      - name: Download company artifact
+      - name: Download site artifact
         uses: actions/download-artifact@v4
         with:
-          name: out-${{ matrix.company }}
-          path: out-${{ matrix.company }}
+          name: site
+          path: site
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate PDF
         uses: narthanaj/html-to-pdf-action@v1.0.0
         with:
-          # Root for default, /company/ for others
-          source: https://vbanderov.github.io/svelte-cv/${{ matrix.company == 'default' && 'index.html' || format('{0}/index.html', matrix.company) }}#${{ secrets.ENCRYPTION_PASSWORD }}
-          output: out-${{ matrix.company }}/${{ secrets.ENCRYPTION_PASSWORD }}.pdf
+          source: https://vbanderov.github.io/svelte-cv/index.html#${{ secrets.ENCRYPTION_PASSWORD }}
+          output: site/${{ secrets.ENCRYPTION_PASSWORD }}.pdf
           print_background: 'true'
-
-      - name: Upload updated artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: final-out-${{ matrix.company }}
-          path: out-${{ matrix.company }}
-
-  deploy-with-pdf:
-    needs: pdf-all
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download all Final Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: all-final
-          pattern: final-out-*
-          merge-multiple: false
-
-      - name: Combine with Root Logic
-        run: |
-          mkdir -p build
-          for d in all-final/final-out-*; do
-            company=$(basename "$d" | sed 's/^final-out-//')
-            if [ "$company" = "default" ]; then
-              cp -r "$d"/* build/
-            else
-              mkdir -p build/$company
-              cp -r "$d"/* build/$company/
-            fi
-          done
 
       - name: Upload to Pages
         uses: actions/upload-pages-artifact@v4
         with:
-          path: 'build/'
+          path: 'site/'
 
       - name: Deploy
         uses: actions/deploy-pages@v4
 
   delete-build-artifacts:
-    needs: deploy-with-pdf
+    needs: pdf
     runs-on: ubuntu-latest
-    strategy:
-      matrix: *company-matrix
     steps:
-      - name: Delete build artifact
+      - name: Delete site artifact
         uses: geekyeggo/delete-artifact@v5.1.0
         with:
-          name: out-${{ matrix.company }}
-      - name: Delete final build artifact
-        uses: geekyeggo/delete-artifact@v5.1.0
-        with:
-          name: final-out-${{ matrix.company }}
+          name: site
