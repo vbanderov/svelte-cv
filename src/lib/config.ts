@@ -33,7 +33,7 @@ const name = 'Vladimir Banderov';
 // Supports per-company overrides: string or { default: string, [company: string]: string }
 const tagLine: CompanyOverride<string> = {
 	default:
-		'Staff Engineer with **12+ years** delivering scalable tech solutions that generate multimillion-dollar business value in fintech, including **$9M in annual cost savings** through architecture optimizations at RBC.',
+		'Staff Engineer, Developer Experience at Helcim. 12+ years in fintech, focused on helping engineering teams build, review and ship faster.',
 	mercury:
 		'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams and scalable banking solutions that drive business value in fintech and remote environments.',
 	clio: 'Engineering Leader with 12+ years in full-stack development, specializing in high-performing teams, scalable SaaS solutions, and career development that drive business value in fintech and regulated environments.',
@@ -46,9 +46,9 @@ const tagLine: CompanyOverride<string> = {
 const expertise: CompanyOverride<string[]> = {
 	default: [
 		'Boosted AI adoption via GenAI initiative, increasing active users by **150%** and halving unit test development time (from 25% to 12% of dev cycles), accelerating productivity across enterprise teams.',
-		'Delivered high-impact features for wealth management apps, scaling systems to support **80% code reuse** and reducing advisor process time by ~**80%** in KYC/NAAF workflows.',
 		'Optimized hiring and onboarding, cutting first-level interviews by **60%** with custom assessments and mentoring plans that ramped up team efficiency in remote, cross-functional environments.',
-		'Architected cloud/on-premise infrastructure for performance and cost, enabling seamless CI/CD pipelines and microservices that minimized defects and supported rapid growth.'
+		'Architected cloud/on-premise infrastructure for performance and cost, enabling seamless CI/CD pipelines and microservices that minimized defects and supported rapid growth.',
+		'Delivered high-impact features for wealth management apps, scaling systems to support **80% code reuse** and reducing advisor process time by ~**80%** in KYC/NAAF workflows.'
 	],
 	mercury: [
 		'Leading cross-functional tech teams to deliver high-impact features, mentoring engineers, and optimizing hiring processes to foster collaboration and recruit top talent efficiently in fintech settings.',
@@ -75,6 +75,32 @@ const expertise: CompanyOverride<string[]> = {
 const experience: Job[] = [
 	{
 		employer: {
+			title: 'Helcim',
+			url: 'https://www.linkedin.com/company/helcim/',
+			location: 'Calgary, AB'
+		},
+		positions: [
+			{
+				title: 'Staff Engineer, Developer Experience',
+				startDate: [2026, 2],
+				bulletPoints: [
+					'Lead cross-team developer velocity work across tooling, platform and process.',
+					'Rolling out AI-first development, with coding agents for all teams and risk-tiered review that lets routine changes merge without human review.',
+					'Migrated feature flags across services to an OpenFeature-based platform.',
+					'Facilitate the engineering technical forum and its architecture-decision process.'
+				],
+				technologies: [
+					'Developer Experience',
+					'Platform Engineering',
+					'AI-first Development',
+					'Engineering Metrics',
+					'Technical Leadership'
+				]
+			}
+		]
+	},
+	{
+		employer: {
 			title: 'RBC',
 			url: 'https://www.linkedin.com/company/royal-bank-of-canada/',
 			location: 'Calgary, AB'
@@ -83,6 +109,7 @@ const experience: Job[] = [
 			{
 				title: 'Lead Full Stack Developer',
 				startDate: [2023, 2],
+				endDate: [2026, 2],
 				bulletPoints: {
 					default: [
 						'Generated **$9M in annual cost savings** by rearchitecting document workflows with NestJS/TypeScript microservices, replacing Node.js/Express and achieving **80% code reuse** across KYC, NAAF, and AOIF apps-saving advisors ~**80% time** per process.',
